@@ -7,7 +7,7 @@ import Menu from './components/Menu';
 import Login from './components/Login';
 import Footer from './components/Footer';
 import Recover from './components/Recover';
-import Employee from './components/Employee';
+import Employee from './components/Employee/Employee';
 
 function App() {
     return (
@@ -16,12 +16,14 @@ function App() {
                 Welcome Employee Manager
             </div>
             <Menu />
+
             <Routes>
                 <Route path='/user' element={<User />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/recover' element={<Recover />} />
                 <Route path='/employees' element={<Employee />} />
             </Routes>
+
             <Footer />
         </div>
     );

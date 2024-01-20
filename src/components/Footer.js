@@ -1,9 +1,9 @@
 
 const Footer = () => {
     return(
-        <div className="employee-content">
+        <div className="footer">
             <p>
-                (c)2024 BRIAN OTIM<br/>
+                &copy; Copyright 2024 <br /> BRIAN OTIM<br/>
                 Employee Management Project
             </p>
         </div>

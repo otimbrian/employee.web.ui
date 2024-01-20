@@ -10,7 +10,7 @@ const Login = () => {
         console.log("Loging in .....")
     }
     return (
-        <div className="content-manager">
+        <div>
             <h3>Login</h3>
 
             <div>
