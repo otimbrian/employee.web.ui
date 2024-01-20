@@ -1,0 +1,66 @@
+.employee-content {
+    text-align: center;
+    width: 600px;
+    margin: 20px auto 20px auto;
+    font-weight: normal;
+
+    background-color: aqua;
+}
+
+.employee-content ul li {
+    /* list-style-type: none; */
+    display: inline;
+}
+
+#login a {
+    color: blue;
+}
+
+#login a:hover {
+    color: #cc3333;
+    background-color: #ffffff;
+}
+
+
+
+/* 
+.Employee{
+    /* background-color: black; */
+/* max-width: 1100px;
+margin: 0 auto;
+padding: 0 15px;
+padding-top: 30px;
+height: 100%;
+display: block;
+} */
+
+/* .side-bar { */
+/* position: absolute; */
+/* background: silver;
+    width: 200px;
+    height: 100%;
+    top: 50px;
+    padding-top: 10px;
+    align-items: first baseline; */
+/* padding-left: 10px; */
+/* align-items: center; */
+/* z-index: 1; */
+/* } */
+
+/* 
+
+.side-bar ul li {
+    margin: 40px 0;
+
+}
+
+.side-bar ul li span {
+    color: black;
+    padding: 0 30px;
+}
+
+.employee-content {
+    margin-left: 200px;
+    height: 100%;
+    background-color: black;
+} */

@@ -1,5 +1,31 @@
+#navigation {
+  width: 570px;
+  padding: 25px;
+  margin: 0px auto 0px auto;
+  border-top: 2px solid #000;
+  border-bottom: 1px solid #000;
+  text-align: center;
+}
 
-.nav-container {
+#navigation li {
+  display: inline;
+  margin: 0px 3px;
+}
+
+a {
+  color: #000000;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 18px 5px 18px;
+}
+
+a:hover,
+a:active {
+  color: #cc3333;
+  background-color: #ffffff;
+}
+
+/* .nav-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 15px;
@@ -8,6 +34,7 @@
     align-items: center;
     height: 100%;
     list-style-type: none;
+    background-color: silver;
   }
   
   
@@ -30,6 +57,4 @@
   .content-manager {
     padding-top: 150px;
     align-content: center;
-  }
-  
-  
+  } */

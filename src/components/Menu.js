@@ -1,23 +1,43 @@
 import { Link } from "react-router-dom"
+import { FaUser, FaHouse, FaUserGroup, FaRegCircleUp, FaRegCircleDown } from "react-icons/fa6";
 
+// , FaBars, FaRegUser
 
 const Menu = () => {
     return (
-        // <nav className="nav-bar">
-        <div className='nav-container'>
-            <div>
-                <><Link to='/'>Home</Link></>
-            </div>
-            <div className="nav-element">
-                <ul>
-                    <li><Link to='/employee'>Employee</Link></li>
-                    <li><Link to='/login'>Login</Link></li>
-                    <li><Link to='/logout'>Logout</Link></li>
-                    <li><Link to='/user'>User</Link></li>
-                </ul>
-            </div>
-        </div>
-        // </nav>
+   
+        <ul id="navigation" >
+            <li>
+                <Link to='/'>
+                    <FaHouse />
+                    Home
+                </Link>
+            </li>
+            <li>
+                <Link to='/employees'>
+                    <FaUserGroup />
+                    Employees
+                </Link>
+            </li>
+            <li>
+                <Link to='/login'>
+                    <FaRegCircleUp />
+                    Login
+                </Link>
+            </li>
+            <li>
+                <Link to='/logout'>
+                    <FaRegCircleDown />
+                    Logout
+                </Link>
+            </li>
+            <li>
+                <Link to='/user'>
+                    <FaUser />
+                    User
+                </Link>
+            </li>
+        </ul>
     )
 }
 

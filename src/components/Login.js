@@ -37,7 +37,7 @@ const Login = () => {
                 {/* {
                         userStatus === 'User'
                             ? ( */}
-                <div>
+                <div id="login">
                     <Link to='/recover'>Forgot your password?</Link><br />
                     <>Don't have an Account? Contact Admin.</>
 
