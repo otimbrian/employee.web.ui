@@ -5,6 +5,7 @@ import './static/css/navigation.css'
 import User from './components/User';
 import Menu from './components/Menu';
 import Login from './components/Login';
+import Footer from './components/Footer';
 import Recover from './components/Recover';
 import Employee from './components/Employee';
 
@@ -21,6 +22,7 @@ function App() {
                 <Route path='/recover' element={<Recover />} />
                 <Route path='/employees' element={<Employee />} />
             </Routes>
+            <Footer />
         </div>
     );
 }
