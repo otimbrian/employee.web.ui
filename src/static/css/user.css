@@ -1,3 +1,8 @@
-.user-content {
-    
+
+.employee-content .user-detail li {
+    display: initial;
+}
+
+.employee-content .user-detail span {
+    padding-left: 50px;
 }

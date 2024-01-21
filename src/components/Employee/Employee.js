@@ -1,6 +1,7 @@
 import { FaListUl, FaUserPlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import EmployeeList from './EmployeeList.js'
+import SelectForm from "./SelectForm.js";
 import EmployeeForm from './EmployeeForm.js'
 
 // FaMagnifyingGlass, FaPrescriptionBottle
@@ -22,33 +23,40 @@ const employeeDemon = {
 
 const Employee = () => {
     return (
-        <div className="content">
-            <div className="employee-content" >
-                <div className="column1">
-                    <ul class="nav">
-                        <li>
-                            <Link to="">
-                                <span>
-                                    <FaListUl />
-                                    Show
-                                </span>
-                            </Link>
-                        </li>
-                        <li>
-                            <span>
-                                <FaUserPlus />
-                                Create
-                            </span>
-                        </li>
+        <>
+            <div className="employee-content">
+                <SelectForm />
+            </div>
+            <div className="content">
+                <div className="employee-content" >
+                    <div className="column1">
+                        <ul class="nav">
+                            <li>
+                                <Link to="show">
+                                    <span>
+                                        <FaListUl />
+                                        Show
+                                    </span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="create">
+                                    <span>
+                                        <FaUserPlus />
+                                        Create
+                                    </span>
+                                </Link>
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
+                    <EmployeeList />
+                    <div className="column1">
+                        <h4>column1</h4>
+                    </div>
                 </div>
-                <EmployeeList />
-                <div className="column1">
-                    <h4>column1</h4>
-                </div>
-            </div> <br />
-        </div>
+            </div>
+        </>
     )
 }
 

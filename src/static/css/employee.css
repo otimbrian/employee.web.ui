@@ -3,6 +3,7 @@
     width: 720px;
     margin: 20px auto 20px auto;
     font-weight: normal;
+    max-height: 560px;
 
     background-color: aqua;
 }
@@ -12,12 +13,21 @@
     width: 340px;
     float: left;
     margin: 10px;
+    max-height: 300px;
     overflow: scroll;
     
 }
 
 .content {
     display: flex;
+}
+
+.form-content{
+    display: flex;
+}
+
+.form-content form {
+    padding-left: 100px;
 }
 .column1 {
     background-color: #efefef;
@@ -28,6 +38,7 @@
 
 .employee-content ul li {
     list-style-type: none;
+    padding-top: 50px;
     /* display: inline; */
 }
 
@@ -40,8 +51,27 @@
     background-color: #ffffff;
 }
 
+.employee-list-display{
+    width: 320px;
+    height: 100px;
+    background-color: azure;
+}
 
+.column a:hover {
+    color: black;
+}
 
+.employee-list-display:hover {
+    background-color: #5f5252;
+} 
+
+.employee-content form label {
+    padding-left: 25px;
+}
+
+/* .column #list-heading {
+    position: fixed;
+} */
 /* 
 .Employee{
     /* background-color: black; */
