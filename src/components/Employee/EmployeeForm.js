@@ -16,22 +16,22 @@ const EmployeeForm = () => {
                     <fieldset>
                         <legend>Personal Details:</legend>
                         <label>
-                            Name:
+                            <strong>Name:</strong> 
                             <input type="text" name="name" placeholder="Full Name" required="required" />
                         </label>
                         <label>
-                            Username:
+                            <strong>Username:</strong>
                             <input type="text" name="username" placeholder="Username" required="required" />
                         </label>
                         <br />
                         <br />
                         <br />
                         <label>
-                            Email:
+                            <strong>Email:</strong>
                             <input type="email" name="email" placeholder="Email" required="required"/>
                         </label>
                         <label>
-                            Password:
+                            <strong>Password:</strong>
                             <input type="password" name="password" placeholder="Password"  required="required"/>
                         </label>
 
@@ -39,7 +39,7 @@ const EmployeeForm = () => {
                     <fieldset>
                         <legend>Technical:</legend>
                         <label>
-                            Department:
+                            <strong>Department:</strong>
                             <select name="department">
                                 <option value="ipod">iPod</option>
                                 <option value="radio">Radio</option>
@@ -47,7 +47,7 @@ const EmployeeForm = () => {
                             </select>
                         </label>
                         <label>
-                            Admin:
+                            <strong>Admin:</strong>
                             <select name="adminStatus" required="required">
                                 <option value="True">Admin</option>
                                 <option value="False">Not Admin</option>
