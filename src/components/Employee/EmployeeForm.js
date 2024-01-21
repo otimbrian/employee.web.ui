@@ -17,22 +17,22 @@ const EmployeeForm = () => {
                         <legend>Personal Details:</legend>
                         <label>
                             Name:
-                            <input type="text" name="name" placeholder="Full Name" />
+                            <input type="text" name="name" placeholder="Full Name" required="required" />
                         </label>
                         <label>
                             Username:
-                            <input type="text" name="username" placeholder="Username" />
+                            <input type="text" name="username" placeholder="Username" required="required" />
                         </label>
                         <br />
                         <br />
                         <br />
                         <label>
                             Email:
-                            <input type="email" name="email" placeholder="Email" />
+                            <input type="email" name="email" placeholder="Email" required="required"/>
                         </label>
                         <label>
                             Password:
-                            <input type="password" name="password" placeholder="Password" />
+                            <input type="password" name="password" placeholder="Password"  required="required"/>
                         </label>
 
                     </fieldset>
@@ -48,7 +48,7 @@ const EmployeeForm = () => {
                         </label>
                         <label>
                             Admin:
-                            <select name="adminStatus">
+                            <select name="adminStatus" required="required">
                                 <option value="True">Admin</option>
                                 <option value="False">Not Admin</option>
                             </select>
