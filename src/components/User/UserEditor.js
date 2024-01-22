@@ -1,4 +1,4 @@
-import { FaArrowLeft } from "react-icons/fa";
+// import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import NavigateBack from "../NavigateBack";
 
@@ -68,7 +68,7 @@ const UserEditor = () => {
                         <h4>Departments</h4>
                         <div>
                             <ul>
-                                <Link><li>Department one</li></Link>
+                                <li>Department one</li>
                             </ul>
                         </div>
                     </div>

@@ -34,7 +34,7 @@ const Employee = () => {
                             <li>
                                 <Link to="show">
                                     <span>
-                                        <FaListUl />
+                                        <FaListUl /><br />
                                         Show
                                     </span>
                                 </Link>
@@ -42,7 +42,7 @@ const Employee = () => {
                             <li>
                                 <Link to="create">
                                     <span>
-                                        <FaUserPlus />
+                                        <FaUserPlus /><br />
                                         Create
                                     </span>
                                 </Link>
@@ -63,7 +63,7 @@ const Employee = () => {
                             Department
                             <div>
                             <Link to="/user"><FaBars /> View</Link>
-                            <Link to="/employee/edit"><FaFeatherPointed /> Edit</Link>
+                            <Link to="edit"><FaFeatherPointed /> Edit</Link>
                             
                             </div>
                         </div>
