@@ -36,6 +36,13 @@
     margin: 10px;
 }
 
+.column2 {
+    background-color: #efefef;
+    width: 160px;
+    float: left;
+    margin: 10px;
+}
+
 .employee-content ul li {
     list-style-type: none;
     padding-top: 50px;
