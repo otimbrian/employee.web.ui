@@ -1,4 +1,4 @@
-import { FaListUl, FaUserPlus } from "react-icons/fa6";
+import { FaListUl, FaUserPlus, FaEnvelope, FaBuildingColumns } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import EmployeeList from './EmployeeList.js'
 import SelectForm from "./SelectForm.js";
@@ -52,7 +52,16 @@ const Employee = () => {
                     </div>
                     <EmployeeList />
                     <div className="column1">
-                        <h4>column1</h4>
+                        <h4>Selected</h4>
+                        <div className="employee-list-display">
+                            <h4 id="cap"><i>OTIM BRIAN</i></h4>
+                            <FaEnvelope /> <strong>name@email.com</strong> <br />
+                            Email
+                            <br />
+                            <br />
+                            <FaBuildingColumns /> <strong>Department one.</strong><br />
+                            Department
+                        </div>
                     </div>
                 </div>
             </div>

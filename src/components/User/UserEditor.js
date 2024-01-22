@@ -10,54 +10,70 @@ const UserEditor = () => {
                 </Link>
             </div>
             <div className="employee-content">
-                <h4>Employee Form</h4>
+                <div className="content">
+                    <div className="column-one">
+                        <h4>Employee Form</h4>
 
-                <form>
-                    <fieldset>
-                        <legend>Personal Details:</legend>
+                        <form>
+                            <fieldset>
+                                <legend>Personal Details:</legend>
+                                <div>
+                                    <label id="user-detail"><strong>Otim Brian</strong></label>
+                                    <label id="user-detail"><strong>Otim</strong></label>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <strong>Name:</strong>
+                                        <input type="text" name="name" placeholder="Full Name" required="required" id="input-text" />
+                                    </label>
+                                    <label>
+                                        <strong>Username:</strong>
+                                        <input type="text" name="username" placeholder="Username" required="required" id="input-text" />
+                                    </label>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <label><strong>otim.brian@gmail.com</strong></label>
+                                <br />
+                                <br />
+                                <label>
+                                    <strong>Email:</strong>
+                                    <input type="email" name="email" placeholder="Email" required="required" />
+                                </label>
+                                {/* <label>
+            <strong>Password:</strong>
+            <input type="password" name="password" placeholder="Password" required="required" />
+        </label> */}
+
+                            </fieldset>
+                            <fieldset>
+                                <legend>Technical:</legend>
+                                <label>
+                                    <strong>Department:</strong>
+                                    <select name="department">
+                                        <option value="ipod">iPod</option>
+                                        <option value="radio">Radio</option>
+                                        <option value="computer">Computer</option>
+                                    </select>
+                                </label>
+                            </fieldset>
+
+                            {/* {// todo -------> Make sure this is exported as a component } */}
+                        </form>
+                    </div>
+                    <div className="column-two">
+                        <h4>Departments</h4>
                         <div>
-                            <label>
-                                <strong>Name:</strong> Otim Brian
-                                <br />
-                                <input type="text" name="name" placeholder="Full Name" required="required" />
-                            </label>
-                            <label>
-                                <strong>Username:</strong> Otim
-                                <br />
-                                <input type="text" name="username" placeholder="Username" required="required" />
-                            </label>
+                            <ul>
+                                <Link><li>Department one</li></Link>
+                            </ul>
                         </div>
-                        <br />
-                        <br />
-                        {/* <br /> */}
-                        {/* <label>
-                            <strong>Email:</strong> otim.brian@gmail.com
-                            <br />
-                            <input type="email" name="email" placeholder="Email" required="required" />
-                        </label>
-                        <label>
-                            <strong>Password:</strong>
-                            <input type="password" name="password" placeholder="Password" required="required" />
-                        </label> */}
-
-                    </fieldset>
-                    {/* <fieldset>
-                        <legend>Technical:</legend>
-                        <label>
-                            <strong>Department:</strong>
-                            <select name="department">
-                                <option value="ipod">iPod</option>
-                                <option value="radio">Radio</option>
-                                <option value="computer">Computer</option>
-                            </select>
-                        </label>
-                    </fieldset> */}
-                    
-                    {/* {// todo -------> Make sure this is exported as a component } */}
-                    <fieldset>
-                        <input type="submit" value="Update User" />
-                    </fieldset>
-                </form>
+                    </div>
+                </div>
+            </div>
+            <div className="employee-content">
+                <input type="submit" value="Update User" />
             </div>
         </>
     )

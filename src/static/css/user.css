@@ -1,4 +1,3 @@
-
 .user-detail li {
     display: initial;
 }
@@ -7,7 +6,7 @@
     padding-left: 50px;
 }
 
-.employee-list-display{
+.employee-list-display {
     width: 320px;
     height: 120px;
     padding: 20px auto 18px auto;
@@ -17,11 +16,37 @@
     text-transform: none;
 }
 
-.employee-list-display h4{
+.employee-list-display h4 {
     padding-left: 40px;
-    
+
 }
 
 .employee-content #submit {
     background-color: rgb(172, 194, 172);
 }
+
+#user-detail {
+    padding: 60px;
+}
+
+.column-two {
+    background-color: #efefef;
+    width: 200px;
+    float: left;
+    margin: 10px;
+}
+
+.column-one {
+    background-color: #efefef;
+    width: 470px;
+    float: left;
+    margin: 10px;
+    max-height: 300px;
+    overflow: scroll;
+
+}
+
+#input-text {
+    width: 110px;
+}
+
