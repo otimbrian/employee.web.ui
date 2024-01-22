@@ -1,13 +1,15 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import NavigateBack from "../NavigateBack";
 
 const UserEditor = () => {
     return (
         <>
             <div className="employee-content">
-                <Link to="/user">
+                <NavigateBack />
+                {/* <Link to="/user">
                     <FaArrowLeft />Back
-                </Link>
+                </Link> */}
             </div>
             <div className="employee-content">
                 <div className="content">

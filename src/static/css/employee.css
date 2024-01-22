@@ -10,7 +10,7 @@
 
 .column {
     background-color: #efefef;
-    width: 340px;
+    width: 320px;
     float: left;
     margin: 10px;
     max-height: 300px;
@@ -31,14 +31,14 @@
 }
 .column1 {
     background-color: #efefef;
-    width: 160px;
+    width: 140px;
     float: left;
     margin: 10px;
 }
 
 .column2 {
     background-color: #efefef;
-    width: 160px;
+    width: 200px;
     float: left;
     margin: 10px;
 }

@@ -1,13 +1,15 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import NavigateBack from "../NavigateBack";
 
 const EmployeeForm = () => {
     return (
         <>
             <div className="employee-content">
-                <Link to="/employees">
+                <NavigateBack />
+                {/* <Link to="/employees">
                     <FaArrowLeft />Back
-                </Link>
+                </Link> */}
             </div>
             <div className="employee-content">
                 <h4>Employee Form</h4>
