@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Recover from './components/User/Recover';
 import Employee from './components/Employee/Employee';
 import EmployeeForm from './components/Employee/EmployeeForm';
+import UserEditor from './components/User/UserEditor';
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path='/recover' element={<Recover />} />
                 <Route path='/employees' element={<Employee />} />
                 <Route path='employees/create' element={<EmployeeForm />} />
+                <Route path='/employee/edit' element={<UserEditor />} />
             </Routes>
 
             <Footer />

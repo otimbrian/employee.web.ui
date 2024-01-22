@@ -5,7 +5,7 @@
     font-weight: normal;
     max-height: 560px;
 
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .column {
@@ -51,18 +51,13 @@
     background-color: #ffffff;
 }
 
-.employee-list-display{
-    width: 320px;
-    height: 100px;
-    background-color: azure;
-}
 
 .column a:hover {
     color: black;
 }
 
 .employee-list-display:hover {
-    background-color: #5f5252;
+    background-color: #f3eaea;
 } 
 
 .employee-content form label {

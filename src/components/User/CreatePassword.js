@@ -11,6 +11,7 @@ const PasswordConfirmation = () => {
                 Confirm Password:
                 <input type="password" name="password" placeholder="Password" />
             </label>
+            {/* {// todo -------> Make sure this is exported as a component } */}
             <input type="submit" value="Enter" />
         </form>
     )

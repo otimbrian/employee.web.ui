@@ -6,3 +6,22 @@
 .employee-content .user-detail span {
     padding-left: 50px;
 }
+
+.employee-list-display{
+    width: 320px;
+    height: 120px;
+    padding: 20px auto 18px auto;
+    text-align: left;
+    padding-left: 30px;
+    background-color: rgb(100, 112, 112);
+    text-transform: none;
+}
+
+.employee-list-display h4{
+    padding-left: 40px;
+    
+}
+
+.employee-content #submit {
+    background-color: rgb(172, 194, 172);
+}

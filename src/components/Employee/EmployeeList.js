@@ -1,27 +1,54 @@
 import { Link } from "react-router-dom"
+import { FaEnvelope, FaBuildingColumns } from "react-icons/fa6";
 
 const employeeList = () => {
     return (
         <div className="column">
             <h4 id="list-heading">Employee List</h4>
-            <Link to="/employee">
+            <Link to='/user'>
                 <div className="employee-list-display">
-                    <h3>Otim Brian</h3>
-                    <h4>Department</h4>
+                    <h4 id="cap"><i>OTIM BRIAN</i></h4>
+                    <FaEnvelope /> <strong>name@email.com</strong> <br />
+                    Email
+                    <br />
+                    <br />
+                    <FaBuildingColumns /> <strong>Department one.</strong><br />
+                    Department
                 </div>
             </Link>
-            <div className="employee-list-display">
-                <h3>Otim Brian</h3>
-                <h4>Department</h4>
-            </div>
-            <div className="employee-list-display">
-                <h3>Otim Brian</h3>
-                <h4>Department</h4>
-            </div>
-            <div className="employee-list-display">
-                <h3>Otim Brian</h3>
-                <h4>Department</h4>
-            </div>
+            <Link to='/user'>
+                <div className="employee-list-display">
+                    <h4 id="cap"><i>OTIM BRIAN</i></h4>
+                    <FaEnvelope /> <strong>name@email.com</strong> <br />
+                    Email
+                    <br />
+                    <br />
+                    <FaBuildingColumns /> <strong>Department one.</strong><br />
+                    Department
+                </div>
+            </Link>
+            <Link to='/user'>
+                <div className="employee-list-display">
+                    <h4 id="cap"><i>OTIM BRIAN</i></h4>
+                    <FaEnvelope /> <strong>name@email.com</strong> <br />
+                    Email
+                    <br />
+                    <br />
+                    <FaBuildingColumns /> <strong>Department one.</strong><br />
+                    Department
+                </div>
+            </Link>
+            <Link to='/user'>
+                <div className="employee-list-display">
+                    <h4 id="cap"><i>OTIM BRIAN</i></h4>
+                    <FaEnvelope /> <strong>name@email.com</strong> <br />
+                    Email
+                    <br />
+                    <br />
+                    <FaBuildingColumns /> <strong>Department one.</strong><br />
+                    Department
+                </div>
+            </Link>
         </div>
     )
 }

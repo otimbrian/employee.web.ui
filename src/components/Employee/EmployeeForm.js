@@ -55,6 +55,7 @@ const EmployeeForm = () => {
                         </label>
                     </fieldset>
                     <fieldset>
+                        {/* {// todo -------> Make sure this is exported as a component } */}
                         <input type="submit" value="Create Employee" />
                     </fieldset>
                 </form>

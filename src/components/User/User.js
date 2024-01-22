@@ -1,4 +1,6 @@
 
+import ButtonLink from "../ButtonLink"
+
 const User = () => {
     return (
         <>
@@ -20,9 +22,7 @@ const User = () => {
                 </span>
             </div>
         </div>
-        <div className="employee-content">
-            <input type="button" value="Edit User" />
-        </div>
+        <ButtonLink />
         </>
     )
 }
