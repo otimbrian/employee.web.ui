@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { FaUser, FaHouse, FaUserGroup, FaRegCircleUp, FaRegCircleDown } from "react-icons/fa6";
+import { FaUser, FaHouse, FaUserGroup, FaRegCircleUp, FaRegCircleDown, FaEnvelope } from "react-icons/fa6";
 
 // , FaBars, FaRegUser
 
@@ -17,6 +17,12 @@ const Menu = () => {
                 <Link to='/employees'>
                     <FaUserGroup />
                     Employees
+                </Link>
+            </li>
+            <li>
+                <Link to='/department'>
+                <FaEnvelope />
+                    Department
                 </Link>
             </li>
             <li>

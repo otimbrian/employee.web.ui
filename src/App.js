@@ -11,12 +11,14 @@ import Recover from './components/User/Recover';
 import Employee from './components/Employee/Employee';
 import EmployeeForm from './components/Employee/EmployeeForm';
 import UserEditor from './components/User/UserEditor';
+import Department from './components/Department/Department';
 
 function App() {
     return (
         <div className="App">
             <div id='logo'>
-                Welcome Employee Manager
+                Welcome<br />
+                Employee Manager
             </div>
             <Menu />
 
@@ -27,6 +29,7 @@ function App() {
                 <Route path='/employees' element={<Employee />} />
                 <Route path='employees/create' element={<EmployeeForm />} />
                 <Route path='/employee/edit' element={<UserEditor />} />
+                <Route path='department' element= {<Department />} />
             </Routes>
 
             <Footer />
