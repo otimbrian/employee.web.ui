@@ -3,6 +3,7 @@ import './App.css';
 import './static/css/user.css'
 import './static/css/employee.css'
 import './static/css/navigation.css'
+import './static/css/user-details.css'
 import './static/css/card.css'
 import Menu from './components/Menu';
 import Home from './components/Home';
