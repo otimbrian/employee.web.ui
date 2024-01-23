@@ -1,6 +1,8 @@
 // import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import NavigateBack from "../NavigateBack";
+import { FcDeleteDatabase } from "react-icons/fc";
+import { AiFillDelete } from "react-icons/ai";
 
 const UserEditor = () => {
     return (
@@ -67,8 +69,11 @@ const UserEditor = () => {
                     <div className="column-two">
                         <h4>Departments</h4>
                         <div>
-                            <ul>
-                                <li>Department one</li>
+                            <ul id="department-list">
+                                <li>Department one<button><FcDeleteDatabase /> </button> </li>
+                                <li>Department one<button><AiFillDelete /></button> </li>
+                                <li>Department one<button><AiFillDelete /></button> </li>
+                                <li>Department one<button><AiFillDelete /></button> </li>
                             </ul>
                         </div>
                     </div>

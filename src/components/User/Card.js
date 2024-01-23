@@ -35,13 +35,12 @@ export const UserCardFullDisplay = () => {
 
                 <p><FaBuildingColumns /> <strong>Departments</strong><br /></p>
                 <DepartmentList />
-
-                <div className="links">
-                    <Link to="/user"><FaBars /> View</Link>
-                    <Link to="/employee/edit"><FaFeatherPointed /> Edit</Link>
-                </div>
             </div>
-
+            
+            <div className="links">
+                <Link to="/user"><FaBars /> View</Link>
+                <Link to="/employee/edit"><FaFeatherPointed /> Edit</Link>
+            </div>
         </div>
     )
 }
