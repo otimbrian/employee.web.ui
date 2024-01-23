@@ -15,6 +15,8 @@
     margin: 10px;
     max-height: 300px;
     overflow: scroll;
+    align-items: center;
+    align-content: center;
     
 }
 
@@ -31,16 +33,18 @@
 }
 .column1 {
     background-color: #efefef;
-    width: 140px;
+    width: 130px;
     float: left;
     margin: 10px;
 }
 
 .column2 {
     background-color: #efefef;
-    width: 200px;
+    width: 210px;
     float: left;
     margin: 10px;
+    max-height: 300px;
+    overflow: scroll;
 }
 
 .employee-content ul li {

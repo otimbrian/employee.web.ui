@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import EmployeeList from './EmployeeList.js'
 import SelectForm from "./SelectForm.js";
 import EmployeeForm from './EmployeeForm.js'
+import { UserCardFullDisplay } from "../User/Card.js";
 
 // FaMagnifyingGlass, FaPrescriptionBottle
 const employeeDemon = {
@@ -53,7 +54,8 @@ const Employee = () => {
                     <EmployeeList />
                     <div className="column2">
                         <h4>Selected</h4>
-                        <div id="employee-list-display">
+                        <UserCardFullDisplay />
+                        {/* <div id="employee-list-display">
                             <h4 id="cap"><i>OTIM BRIAN</i></h4>
                             <FaEnvelope /> <strong>name@email.com</strong> <br />
                             Email
@@ -66,7 +68,7 @@ const Employee = () => {
                             <Link to="edit"><FaFeatherPointed /> Edit</Link>
                             
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

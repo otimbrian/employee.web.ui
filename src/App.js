@@ -3,16 +3,19 @@ import './App.css';
 import './static/css/user.css'
 import './static/css/employee.css'
 import './static/css/navigation.css'
+import './static/css/card.css'
 import Menu from './components/Menu';
 import Home from './components/Home';
 import Login from './components/Login';
 import Footer from './components/Footer';
 import User from './components/User/User';
+import UserCard from './components/User/Card';
 import Recover from './components/User/Recover';
 import Employee from './components/Employee/Employee';
 import EmployeeForm from './components/Employee/EmployeeForm';
 import UserEditor from './components/User/UserEditor';
 import Department from './components/Department/Department';
+
 
 function App() {
     return (
@@ -32,6 +35,7 @@ function App() {
                 <Route path='employees/create' element={<EmployeeForm />} />
                 <Route path='/employee/edit' element={<UserEditor />} />
                 <Route path='department' element= {<Department />} />
+                <Route path='/card' element= {<UserCard /> } ></Route>
             </Routes>
 
             <Footer />

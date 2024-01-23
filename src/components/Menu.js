@@ -16,7 +16,7 @@ const Menu = () => {
             <li>
                 <Link to='/employees'>
                     <FaUserGroup />
-                    Employees
+                    Employee
                 </Link>
             </li>
             <li>
