@@ -1,26 +1,10 @@
-import { FaListUl, FaUserPlus, FaEnvelope, FaBuildingColumns, FaFeatherPointed, FaBars } from "react-icons/fa6";
+import { FaListUl, FaUserPlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import EmployeeList from './EmployeeList.js'
 import SelectForm from "./SelectForm.js";
-import EmployeeForm from './EmployeeForm.js'
 import { UserCardFullDisplay } from "../User/Card.js";
 
 // FaMagnifyingGlass, FaPrescriptionBottle
-const employeeDemon = {
-    name: "Otim",
-    surname: "Brian",
-    email: "testemil@gmail.com",
-    departments: [
-        {
-            name: "department 1",
-            employes: [
-                {
-                    name: "otim"
-                }
-            ]
-        }
-    ]
-}
 
 const Employee = () => {
     return (

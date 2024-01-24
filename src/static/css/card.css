@@ -31,9 +31,9 @@
 }
 
 .user-card ul#a {
-    list-style-type: circle;
+    /* list-style-type: circle; */
     margin: 0;
-    padding-left: 25px;
+    /* padding-left: 2px; */
     padding-bottom: 20px;
     /* padding: 15px; */
   }
