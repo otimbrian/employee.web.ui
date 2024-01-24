@@ -31,35 +31,40 @@ const SelectedDepartment = () => {
                 <h4><i>DEPARTMENT ONE</i></h4>
                 <p><FaUserGroup /> <strong>3</strong> <br />
                     Employees</p>
-                
+
                 <p><strong>EMPLOYEES</strong></p>
                 <EmployeeList />
             </div>
             <div className="links">
                 <Link to="/user"><FaBars /> View</Link>
-                <Link to="/employee/edit"><FaFeatherPointed /> Edit</Link>
+                <Link to="/department/edit"><FaFeatherPointed /> Edit</Link>
             </div>
-            
+
         </div>
     )
 }
 const Department = () => {
     return (
-        <div className="employee-content">
-            <h4>Department</h4>
-            <div className="depart">
-                <div className="department-list">
-                    <ul id="department-card-list">
-                        <li><DepartmentCard /></li>
-                        <li><DepartmentCard /></li>
-                        <li><DepartmentCard /></li>
-                    </ul>
-                </div>
-                <div className="second-column">
-                    <SelectedDepartment />
+        <>
+            <div className="employee-content">
+                <Link to="/department/create">Create New Department</Link>
+            </div>
+            <div className="employee-content">
+                <h4 id="depart-head">Department</h4>
+                <div className="depart">
+                    <div className="department-list">
+                        <ul id="department-card-list">
+                            <li><DepartmentCard /></li>
+                            <li><DepartmentCard /></li>
+                            <li><DepartmentCard /></li>
+                        </ul>
+                    </div>
+                    <div className="second-column">
+                        <SelectedDepartment />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 export default Department

@@ -11,6 +11,7 @@ const EmployeeForm = () => {
                     <FaArrowLeft />Back
                 </Link> */}
             </div>
+            <br />
             <div className="employee-content">
                 <h4>Employee Form</h4>
 

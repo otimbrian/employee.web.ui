@@ -17,6 +17,8 @@ import Employee from './components/Employee/Employee';
 import EmployeeForm from './components/Employee/EmployeeForm';
 import UserEditor from './components/User/UserEditor';
 import Department from './components/Department/Department';
+import DepartmentEdit from './components/Department/DepartmentEdit';
+import DepartmentForm from './components/Department/DepartmentForm';
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
                 <Route path='/employee/edit' element={<UserEditor />} />
                 <Route path='department' element= {<Department />} />
                 <Route path='/card' element= {<UserCard /> } ></Route>
+                <Route path='/department/edit' element={<DepartmentEdit />} />
+                <Route path='/department/create' element= {<DepartmentForm />} />
             </Routes>
 
             <Footer />

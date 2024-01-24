@@ -8,7 +8,7 @@ const NavigateBack = () => {
         navigate(-1)
     }
     return (
-        <button onClick={navigateToPreviousUrl}><FaArrowLeft /> Back</button>
+        <button id="navigate-back" onClick={navigateToPreviousUrl}><FaArrowLeft /> Back</button>
     )
 }
 

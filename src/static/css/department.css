@@ -9,6 +9,10 @@
     /* float: left; */
 }
 
+.employee-content h4#depart-head{
+    padding: 10px;
+}
+
 .department-list {
     max-height: 300px;
     overflow: scroll;

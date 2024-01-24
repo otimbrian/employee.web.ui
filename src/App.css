@@ -30,3 +30,7 @@ body {
 
   background-color: rgb(79, 99, 99);
 }
+
+.employee-content button#navigate-back {
+  float: left;
+}
