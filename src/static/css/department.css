@@ -9,7 +9,7 @@
     /* float: left; */
 }
 
-.employee-content h4#depart-head{
+.employee-content h4#depart-head {
     padding: 10px;
 }
 
@@ -67,4 +67,13 @@
 
 form fieldset#dep-field {
     padding: 20px;
+}
+
+.department-column-one {
+    background-color: #efefef;
+    width: 470px;
+    float: left;
+    margin: 10px;
+    max-height: 300px;
+    /* overflow: scroll; */
 }
