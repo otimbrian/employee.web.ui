@@ -3,9 +3,10 @@ import NavigateBack from "../NavigateBack"
 const DepartmentForm = () => {
     return (
         <>
-            <div>
+            <div  className="employee-content">
                 <NavigateBack />
             </div>
+            <br />
             <div className="employee-content">
                
                 <form>

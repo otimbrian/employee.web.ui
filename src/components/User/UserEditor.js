@@ -13,6 +13,7 @@ const UserEditor = () => {
                     <FaArrowLeft />Back
                 </Link> */}
             </div>
+            <br />
             <div className="employee-content">
                 <div className="content">
                     <div className="column-one">
