@@ -70,10 +70,10 @@ const UserEditor = () => {
                         <h4>Departments</h4>
                         <div>
                             <ul id="department-list">
-                                <li>Department one<button><FcDeleteDatabase /> </button> </li>
-                                <li>Department one<button><AiFillDelete /></button> </li>
-                                <li>Department one<button><AiFillDelete /></button> </li>
-                                <li>Department one<button><AiFillDelete /></button> </li>
+                                <li>Department one <button><FcDeleteDatabase /> </button></li>
+                                <li>Department one <button><AiFillDelete /></button></li>
+                                <li>Department one <button><AiFillDelete /></button></li>
+                                <li>Department one <button><AiFillDelete /></button></li>
                             </ul>
                         </div>
                     </div>
