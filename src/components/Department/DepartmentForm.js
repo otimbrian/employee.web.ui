@@ -9,7 +9,7 @@ const DepartmentForm = () => {
             <div className="employee-content">
                
                 <form>
-                    <fieldset>
+                    <fieldset id="dep-field">
                         <legend>Department Form</legend>
                         <label>
                             <strong>Department Name:</strong>
@@ -24,7 +24,7 @@ const DepartmentForm = () => {
                             </select>
                         </label>
                     </fieldset>
-                    <fieldset>
+                    <fieldset id="dep-field">
                         {/* {// todo -------> Make sure this is exported as a component } */}
                         <input type="submit" value="Create Department" />
                     </fieldset>

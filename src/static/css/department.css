@@ -64,3 +64,7 @@
 .selected-department article {
     font-size: 45px;
 }
+
+form fieldset#dep-field {
+    padding: 20px;
+}
