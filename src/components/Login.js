@@ -1,13 +1,22 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import loginService from "../services/loginService"
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleLogin = (event) => {
-        event.prevenDefault()
-        console.log("Loging in .....")
+    const handleLogin = async (event) => {
+        event.preventDefault()
+        console.log("Loging in .....", { email, password })
+
+        try {
+            const respone = await loginService.genericUserLogin({ email, password })
+            console.log(respone);
+        } catch (exception) {
+            console.log("Error in logging in: --->",exception.message)
+        }
+
     }
     return (
         <div>
@@ -42,13 +51,6 @@ const Login = () => {
                     <>Don't have an Account? Contact Admin.</>
 
                 </div>
-                {/* )
-                            : (
-                                <div>
-                                    <h4>If You Don't have an Account Contact Admin</h4>
-                                </div>
-                            ) */}
-                {/* } */}
             </div>
         </div>
     )
