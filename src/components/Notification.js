@@ -1,4 +1,4 @@
-import {useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 const Notification = () => {
@@ -6,10 +6,10 @@ const Notification = () => {
     return notification.message === undefined
         ? null
         : (
-                <div className={notification.status}>
-                    <p>{notification.message}</p>
-                </div>
-            )
+            <div className={notification.status}>
+                <p>{notification.message}</p>
+            </div>
+        )
 }
 
 export default Notification

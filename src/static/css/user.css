@@ -70,3 +70,15 @@
     padding-left: 2px;
     font-size: 20px;
 }
+
+.login input#email, .login #password {
+    width: 200px;
+}
+
+.login input#login-submit {
+    width: 70px;
+}
+
+.login form {
+    padding-bottom: 10px;
+}

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import loginService from "../services/loginService"
 import Notification from './Notification.js'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { disableNotification, postNotification } from "../reducers/notificationReducer.js"
 
 const Login = () => {
@@ -18,7 +18,7 @@ const Login = () => {
             const respone = await loginService.genericUserLogin({ email, password })
             console.log(respone);
         } catch (exception) {
-            console.log("Error in logging in: --->",exception.message)
+            console.log("Error in logging in: --->", exception.message)
             dispatch(postNotification({
                 message: exception.message,
                 status: "error"
@@ -35,12 +35,12 @@ const Login = () => {
         <div>
             <h3>Login</h3>
 
-            <div>
+            <div className="login">
                 <form onSubmit={handleLogin}>
                     <label htmlFor="email">
                         <h3>Email</h3>
                         <input type="email" onChange={(event) => setEmail(event.target.value)}
-                            placeholder="Enter Email" required name="email" value={email} />
+                            placeholder="Enter Email" required name="email" value={email} id="email"/>
                     </label>
 
                     <label htmlFor="password">
@@ -52,7 +52,7 @@ const Login = () => {
 
                     <br />
                     <br />
-                    <input type="submit" value="Login" />
+                    <input type="submit" value="Login" id="login-submit" />
                 </form>
                 <div>
                     <Notification />
