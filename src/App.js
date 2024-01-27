@@ -6,6 +6,7 @@ import './static/css/navigation.css'
 import './static/css/user-details.css'
 import './static/css/department.css'
 import './static/css/card.css'
+import './static/css/notification.css'
 import Menu from './components/Menu';
 import Home from './components/Home';
 import Login from './components/Login';

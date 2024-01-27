@@ -1,10 +1,14 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import loginService from "../services/loginService"
+import Notification from './Notification.js'
+import {useDispatch} from 'react-redux'
+import { disableNotification, postNotification } from "../reducers/notificationReducer.js"
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
 
     const handleLogin = async (event) => {
         event.preventDefault()
@@ -15,6 +19,15 @@ const Login = () => {
             console.log(respone);
         } catch (exception) {
             console.log("Error in logging in: --->",exception.message)
+            dispatch(postNotification({
+                message: exception.message,
+                status: "error"
+            }))
+            setTimeout(
+                () => {
+                    dispatch(disableNotification())
+                    console.log("=====Into another ====");
+                }, 5000)
         }
 
     }
@@ -38,10 +51,11 @@ const Login = () => {
                     </label>
 
                     <br />
+                    <br />
                     <input type="submit" value="Login" />
                 </form>
                 <div>
-                    {/* <Notification /> */}
+                    <Notification />
                 </div>
                 {/* {
                         userStatus === 'User'
