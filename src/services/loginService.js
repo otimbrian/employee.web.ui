@@ -11,7 +11,7 @@ const genericUserLogin = async (userCredentials) => {
         "Content-Type": "application/json"
     }
 
-    const response = await axios.post(`${baseUrl}/${loginUrl}`, userCredentials, dataForHeader)
+    const response = await axios.post(`${baseUrl}${loginUrl}`, userCredentials, dataForHeader)
     return response.data
 }
 
