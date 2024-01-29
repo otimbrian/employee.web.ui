@@ -27,7 +27,7 @@ const UserDisplay = ({ user }) => {
                     {/* <br /> */}
 
                     <ul id="department">
-                        {user.department.map(department => <Department department={department}/>)}
+                        {user.department.map(department => <Department department={department} key={department.id}/>)}
                     </ul>
                 </div>
             </div>
