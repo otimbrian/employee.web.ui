@@ -1,39 +1,37 @@
-
 // Base server url.
-export const baseUrl = "http://localhost:3001/api"
+export const baseUrl = 'http://localhost:3001/api'
 
 // Setting the token.
 export let userToken = null
 
-const setUserToken = (newUserToken) => {
+const setUserTokenString = newUserToken => {
     userToken = `Bearer ${newUserToken}`
 }
 
 // Sets the tokeb in the header and returns it as
 // a header object.
-export const getHeader = (token) => {
-    return {
-        Authorization: token
+export const getHeader = token => {
+    const data = {
+        headers: { Authorization: token }
     }
+
+    return data
 }
 
-
 export const employeeLocalStorage = {
-    NAME: "USER_TOKEN",
+    NAME: 'USER_TOKEN',
     addToLocalStorage: (name, value) => {
         localStorage.setItem(name, JSON.stringify(value))
     },
 
-    removeFromLocalStorage: (name) => {
+    removeFromLocalStorage: name => {
         window !== undefined
             ? localStorage.removeItem(name)
-            : console.log("Not removed");
+            : console.log('Not removed')
     },
 
-    getFromLocalStorge: (name) => {
-        return window !== undefined
-            ? JSON.parse(localStorage.getItem(name))
-            : null
+    getFromLocalStorge: name => {
+        return window !== undefined ? JSON.parse(localStorage.getItem(name)) : null
     }
 }
-export default setUserToken
+export default setUserTokenString
