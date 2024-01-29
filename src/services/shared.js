@@ -6,12 +6,20 @@ export const baseUrl = "http://localhost:3001/api"
 export let userToken = null
 
 const setUserToken = (newUserToken) => {
-    userToken = `bearer ${newUserToken}`
+    userToken = `Bearer ${newUserToken}`
+}
+
+// Sets the tokeb in the header and returns it as
+// a header object.
+export const getHeader = (token) => {
+    return {
+        Authorization: token
+    }
 }
 
 
 export const employeeLocalStorage = {
-    TOKEN: "USER_TOKEN",
+    NAME: "USER_TOKEN",
     addToLocalStorage: (name, value) => {
         localStorage.setItem(name, JSON.stringify(value))
     },
@@ -24,7 +32,7 @@ export const employeeLocalStorage = {
 
     getFromLocalStorge: (name) => {
         return window !== undefined
-            ? localStorage.getItem(name)
+            ? JSON.parse(localStorage.getItem(name))
             : null
     }
 }

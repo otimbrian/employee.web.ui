@@ -39,7 +39,7 @@ const Login = () => {
             console.log("login result ----->", result);
 
             // Add the token to the local storage.
-            employeeLocalStorage.addToLocalStorage(employeeLocalStorage.TOKEN, result)
+            employeeLocalStorage.addToLocalStorage(employeeLocalStorage.NAME, result)
 
             // Set the token value for future requests.
             // in the shared folder.

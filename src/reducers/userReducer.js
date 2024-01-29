@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import loginService from '../services/loginService'
+import employeeService from '../services/employeeService'
 
 
 // Redux thunk to handle user login request.
@@ -15,9 +16,23 @@ export const userLogin = createAsyncThunk('user/login', async (credentials, { re
     }
 })
 
+
+// Redux thunk to handle user retrival from the database.
+export const getUser = createAsyncThunk('user/getById', async (id, { rejectWithValue }) => {
+    try {
+        // send request to the employee API
+        const response = await employeeService.getEmployeeWithId(id)
+        return response.data
+
+    } catch (exception) {
+        return rejectWithValue(exception.response.data)
+    }
+})
+
 // The initial user state.
 const initialState = {
     user: null,
+    userTokenObject: null,
     error: null,
     status: "uninitialized"
 }
@@ -28,26 +43,37 @@ const userSlice = createSlice(
         name: "user",
         initialState,
         reducers: {
-            setUser(state, action) {
-                state.user = action.payload
-                state.status = "initialized"
+            setUserToken(state, action) {
+                state.userTokenObject = action.payload
             }
         },
 
-        // The extr reducers to handle user login.
+        // The extra reducers to handle user login.
         extraReducers: (builder) => {
             builder.addCase(userLogin.pending, (state, action) => {
                 state.status = "loading"
             })
                 .addCase(userLogin.fulfilled, (state, action) => {
                     state.status = "succeeded"
-                    state.user = action.payload
+                    state.userTokenObject = action.payload
                 })
                 .addCase(userLogin.rejected, (state, action) => {
                     state.status = "failed"
-                    state.user = null
                     state.error = action.error
+                })
 
+            builder.addCase(getUser.pending, (state, action) => {
+                state.status = "loding"
+            })
+
+                .addCase(getUser.fulfilled, (state, action) => {
+                    state.status = "succeeded"
+                    state.user = action.payload
+                })
+
+                .addCase(getUser.rejected, (state, action) => {
+                    state.status = 'failed'
+                    state.error = action.error
                 })
         }
     }
@@ -55,12 +81,12 @@ const userSlice = createSlice(
 
 // Action to initialiaze a user.
 // If the token already exists.
-export const addUserTostore = (user) => {
+export const addUserTokenTostore = (user) => {
     return dispatch => {
-        dispatch(setUser(user))
+        dispatch(setUserToken(user))
     }
 }
 
 
-export const { setUser } = userSlice.actions
+export const { setUserToken } = userSlice.actions
 export default userSlice.reducer
