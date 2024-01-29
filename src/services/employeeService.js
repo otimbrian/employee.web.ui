@@ -43,10 +43,19 @@ const updateEmployeeUsingId = async (employeeId, employeeObject) => {
     return response.data
 }
 
+// Delete n employee using id.
+const deleteEmployeeUsingId = async (employeeId) => {
+    const data = getHeader(userToken)
+
+    const response = await axios.delete(`${baseEmployeeUrl}/${employeeId}`, data)
+    return response.data
+}
+
 const employeeService = {
     getAllEmployees,
     getEmployeeWithId,
     createEmployee,
-    updateEmployeeUsingId
+    updateEmployeeUsingId,
+    deleteEmployeeUsingId
 }
 export default employeeService

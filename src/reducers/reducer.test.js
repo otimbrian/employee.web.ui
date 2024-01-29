@@ -1,7 +1,5 @@
-
-import deepFreeze from "deep-freeze";
-import notificationReducer from "./notificationReducer";
-
+import deepFreeze from 'deep-freeze'
+import notificationReducer from './notificationReducer'
 
 describe('Notification Reducer', () => {
     test('Should return a proper state', () => {
@@ -11,10 +9,10 @@ describe('Notification Reducer', () => {
         }
 
         const action = {
-            type: "notification/postNotification",
+            type: 'notification/postNotification',
             payload: {
-                messagae: "Hello",
-                status: "Error"
+                messagae: 'Hello',
+                status: 'Error'
             }
         }
 
@@ -22,9 +20,12 @@ describe('Notification Reducer', () => {
         const newState = notificationReducer(state, action)
         expect(newState).toEqual(action.payload)
 
-        const removedState = notificationReducer({}, {
-            type: "notification/removeNotification"
-        })
+        const removedState = notificationReducer(
+            {},
+            {
+                type: 'notification/removeNotification'
+            }
+        )
         expect(removedState).toEqual(state)
     })
 })

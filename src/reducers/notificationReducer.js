@@ -5,23 +5,21 @@ const initialState = {
     message: undefined
 }
 
-const notificationSlice = createSlice(
-    {
-        name: 'notification',
-        initialState,
-        reducers: {
-            postNotification(state, action) {
-                return action.payload
-            },
-            removeNotification(state, action) {
-                state.message = undefined
-                state.status = null
-            }
+const notificationSlice = createSlice({
+    name: 'notification',
+    initialState,
+    reducers: {
+        postNotification(state, action) {
+            return action.payload
+        },
+        removeNotification(state, action) {
+            state.message = undefined
+            state.status = null
         }
     }
-)
+})
 
-export const showNotification = (content) => {
+export const showNotification = content => {
     return dispatch => {
         dispatch(postNotification(content))
     }
@@ -33,5 +31,6 @@ export const disableNotification = () => {
     }
 }
 
-export const { postNotification, removeNotification } = notificationSlice.actions
+export const { postNotification, removeNotification } =
+    notificationSlice.actions
 export default notificationSlice.reducer
