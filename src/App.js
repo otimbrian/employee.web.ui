@@ -34,7 +34,6 @@ function App() {
     // In the local storage.
     useEffect(() => {
         async function callBackFunction() {
-            
             const storedUser = employeeLocalStorage.getFromLocalStorge(
                 employeeLocalStorage.NAME
             )
@@ -53,9 +52,11 @@ function App() {
                     console.log('Received Result From User Call---->', result)
                 } catch (res) {
                     console.log('Erorr or result ----->', res)
-                    if(res.error === "token expired"){
-                        employeeLocalStorage.removeFromLocalStorage(employeeLocalStorage.NAME)
-                        navigate("/login")
+                    if (res.error === 'token expired') {
+                        employeeLocalStorage.removeFromLocalStorage(
+                            employeeLocalStorage.NAME
+                        )
+                        navigate('/login')
                     }
                 }
             } else {
@@ -77,10 +78,11 @@ function App() {
                 <br />
                 Employee Manager
             </div>
-            <Menu user={loggedInUser} />
+
+            {loggedInUser ? <Menu user={loggedInUser} /> : <hr></hr>}
 
             <Routes>
-                <Route path='/user' element={<User/>} />
+                <Route path='/user' element={<User />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/recover' element={<Recover />} />

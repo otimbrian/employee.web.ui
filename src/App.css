@@ -34,3 +34,7 @@ body {
 .employee-content button#navigate-back {
   float: left;
 }
+
+hr {
+  width: 720px;
+}
