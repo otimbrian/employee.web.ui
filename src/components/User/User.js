@@ -1,15 +1,18 @@
 import ButtonLink from '../ButtonLink'
 import UserDisplay from './UserDisplay'
-import { useSelector } from 'react-redux'
 import { FaUser } from 'react-icons/fa6'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { employeeLocalStorage } from '../../services/shared'
 
 const User = () => {
+    const navigate = useNavigate()
     const user = useSelector(state => state.user.userObject)
 
     const logout = () => {
         // console.log('loggin out.')
         employeeLocalStorage.removeFromLocalStorage(employeeLocalStorage.NAME)
+        navigate('/login')
     }
     return (
         <>
