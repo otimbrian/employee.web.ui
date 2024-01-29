@@ -27,7 +27,11 @@ const userSlice = createSlice({
     initialState,
 
     // basic reducers go here.
-    reducers: {},
+    reducers: {
+        remove(state, action) {
+            state.userObject = null
+        }
+    },
 
     // Extra createAsyncThunk reducers go here
     extraReducers: builder => {
@@ -48,4 +52,10 @@ const userSlice = createSlice({
     }
 })
 
+export const removeUser = () => {
+    return dispatch => {
+        dispatch(remove())
+    }
+}
+const { remove } = userSlice.actions
 export default userSlice.reducer
