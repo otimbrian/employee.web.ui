@@ -8,7 +8,7 @@ export const userLogin = createAsyncThunk(
         try {
             // The request to the login API
             const response = await loginService.genericUserLogin(credentials)
-            return response
+            return response.data
         } catch (exception) {
             // The rejected response.
             return rejectWithValue(exception.response.data)
