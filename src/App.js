@@ -80,7 +80,7 @@ function App() {
             <Menu user={loggedInUser} />
 
             <Routes>
-                <Route path='/user' element={<User />} />
+                <Route path='/user' element={<User/>} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/recover' element={<Recover />} />
