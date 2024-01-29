@@ -1,5 +1,5 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import './App.css';
+import { Route, Routes, useNavigate } from 'react-router-dom'
+import './App.css'
 import './static/css/user.css'
 import './static/css/employee.css'
 import './static/css/navigation.css'
@@ -7,24 +7,24 @@ import './static/css/user-details.css'
 import './static/css/department.css'
 import './static/css/card.css'
 import './static/css/notification.css'
-import Menu from './components/Menu';
-import Home from './components/Home';
-import Login from './components/Login';
-import Footer from './components/Footer';
-import User from './components/User/User';
-import UserCard from './components/User/Card';
-import Recover from './components/User/Recover';
-import Employee from './components/Employee/Employee';
-import EmployeeForm from './components/Employee/EmployeeForm';
-import UserEditor from './components/User/UserEditor';
-import Department from './components/Department/Department';
-import DepartmentEdit from './components/Department/DepartmentEdit';
-import DepartmentForm from './components/Department/DepartmentForm';
-import { useEffect } from 'react';
+import Menu from './components/Menu'
+import Home from './components/Home'
+import Login from './components/Login'
+import Footer from './components/Footer'
+import User from './components/User/User'
+import UserCard from './components/User/Card'
+import Recover from './components/User/Recover'
+import Employee from './components/Employee/Employee'
+import EmployeeForm from './components/Employee/EmployeeForm'
+import UserEditor from './components/User/UserEditor'
+import Department from './components/Department/Department'
+import DepartmentEdit from './components/Department/DepartmentEdit'
+import DepartmentForm from './components/Department/DepartmentForm'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { employeeLocalStorage } from './services/shared';
-import { getUser, setUserToken } from './reducers/userReducer';
-
+import setUserTokenString, { employeeLocalStorage } from './services/shared'
+import { getUser } from './reducers/userReducer'
+import { setUserToken } from './reducers/userTokenReducer'
 
 function App() {
     const dispatch = useDispatch()
@@ -34,36 +34,42 @@ function App() {
     // In the local storage.
     useEffect(() => {
         async function callBackFunction() {
-            const storedUser = employeeLocalStorage.getFromLocalStorge(employeeLocalStorage.NAME)
+            const storedUser = employeeLocalStorage.getFromLocalStorge(
+                employeeLocalStorage.NAME
+            )
+
             if (storedUser) {
+                // Set the token value for future requests.
+                // in the shared folder.
+                setUserTokenString(storedUser.token)
                 dispatch(setUserToken(storedUser))
-                console.log("Stored User ----->", storedUser)
-                console.log("User id ---->", storedUser.userId);
+
+                console.log('Stored User ----->', storedUser)
+                console.log('User id ---->', storedUser.userId)
 
                 try {
-                    await dispatch(getUser(storedUser.userId)).unwrap()
+                    const result = await dispatch(getUser(storedUser.userId)).unwrap()
+                    console.log('Received Result From User Call---->', result)
                 } catch (res) {
                     console.log('Erorr or result ----->', res)
                 }
-
-
             } else {
-                if (window.location.href === window.location.origin + "/") {
-                    navigate("/login")
+                if (window.location.href === window.location.origin + '/') {
+                    navigate('/login')
                 }
             }
         }
         callBackFunction()
-
     }, [dispatch, navigate])
 
-    const user = useSelector(state => state.user)
-    console.log('User state ---->', user)
+    const loggedInUser = useSelector(state => state.user.userObject)
+    console.log('User state ---->', loggedInUser)
 
     return (
-        <div className="App">
+        <div className='App'>
             <div id='logo'>
-                Welcome<br />
+                Welcome
+                <br />
                 Employee Manager
             </div>
             <Menu />
@@ -77,14 +83,14 @@ function App() {
                 <Route path='employees/create' element={<EmployeeForm />} />
                 <Route path='/employee/edit' element={<UserEditor />} />
                 <Route path='department' element={<Department />} />
-                <Route path='/card' element={<UserCard />} ></Route>
+                <Route path='/card' element={<UserCard />}></Route>
                 <Route path='/department/edit' element={<DepartmentEdit />} />
                 <Route path='/department/create' element={<DepartmentForm />} />
             </Routes>
 
             <Footer />
         </div>
-    );
+    )
 }
 
-export default App;
+export default App
