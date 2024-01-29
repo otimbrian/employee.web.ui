@@ -15,7 +15,7 @@ const Employee = () => {
             <div className="content">
                 <div className="employee-content" >
                     <div className="column1">
-                        <ul class="nav">
+                        <ul className="nav">
                             <li>
                                 <Link to="show">
                                     <span>
