@@ -29,16 +29,6 @@ const Menu = ({ user }) => {
                             </li>
                             <li
                                 aria-current={
-                                    window.location.pathname === '/logout' ? 'page' : undefined
-                                }
-                            >
-                                <Link to='/logout'>
-                                    <FaRegCircleDown />
-                                    Logout
-                                </Link>
-                            </li>
-                            <li
-                                aria-current={
                                     window.location.pathname === '/user' ? 'page' : undefined
                                 }
                             >
@@ -80,17 +70,6 @@ const Menu = ({ user }) => {
                                 <Link to='/department'>
                                     <FaEnvelope />
                                     Department
-                                </Link>
-                            </li>
-
-                            <li
-                                aria-current={
-                                    window.location.pathname === '/logout' ? 'page' : undefined
-                                }
-                            >
-                                <Link to='/logout'>
-                                    <FaRegCircleDown />
-                                    Logout
                                 </Link>
                             </li>
                             <li
