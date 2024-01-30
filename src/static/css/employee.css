@@ -10,7 +10,7 @@
 
 .column {
     background-color: #efefef;
-    width: 320px;
+    width: 325px;
     float: left;
     margin: 10px;
     max-height: 300px;
@@ -33,7 +33,7 @@
 }
 .column1 {
     background-color: #efefef;
-    width: 100px;
+    width: 95px;
     float: left;
     margin: 10px;
 }
@@ -47,10 +47,25 @@
     overflow: scroll;
 }
 
+
 .employee-content ul li {
     list-style-type: none;
     padding-top: 50px;
     /* display: inline; */
+}
+.employee-content ul#user-list-li {
+    padding-left: 0px;
+}
+.employee-content ul#user-list-li li {
+    padding-top: 10px;
+}
+
+.card .container p#email {
+    text-transform: lowercase;
+}
+
+.card .container h4#cap {
+    text-transform: uppercase;
 }
 
 #login a {

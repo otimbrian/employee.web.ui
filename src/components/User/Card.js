@@ -1,48 +1,73 @@
-import avatar from "../../static/images/avatar/avatar.jpeg"
-import { FaEnvelope, FaBuildingColumns, FaBars, FaFeatherPointed } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import avatar from '../../static/images/avatar/avatar.jpeg'
+import {
+    FaEnvelope,
+    FaBuildingColumns,
+    FaBars,
+    FaFeatherPointed
+} from 'react-icons/fa6'
+import { Link } from 'react-router-dom'
 
-const UserCard = () => {
+// User card.
+const UserCard = ({ user }) => {
     return (
-        <div className="card">
-            <img src={avatar} alt="Avatar" />
-            <div className="container">
-                <h4 id="cap"><i>OTIM BRIAN</i></h4>
-                <p><FaEnvelope /> <strong>name@email.com</strong> <br />
-                    Email</p>
+        <div className='card'>
+            <img src={avatar} alt='Avatar' />
+            <div className='container'>
+                <h4 id='cap'>
+                    <i>{user.name}</i>
+                </h4>
+                <p id='email'>
+                    <FaEnvelope /> <strong>{user.email}</strong> <br />
+                    Email
+                </p>
             </div>
         </div>
     )
 }
 
-const DepartmentList = () => {
-    return (
-        <ul id="a">
-            <li>department one</li>
-            <li>department two</li>
-        </ul>
-    )
+// List for the departments in user selected card.
+const DepartmentList = ({ department }) => {
+    return <li>{department.name}</li>
 }
 
-export const UserCardFullDisplay = () => {
-    return (
-        <div className="user-card">
-            <img src={avatar} alt="Avatar" />
-            <div className="container">
-                <h4 id="cap"><i>OTIM BRIAN</i></h4>
-                <p><FaEnvelope /> <strong>name@email.com</strong> <br />
-                    Email</p>
+// When selected.
+// Disply almost all user details
+export const UserCardFullDisplay = ({ user }) => {
+    return user ? (
+        <>
+            <div className='user-card'>
+                <img src={avatar} alt='Avatar' />
+                <div className='container'>
+                    <h4 id='cap'>
+                        <i>{user.name}</i>
+                    </h4>
+                    <p>
+                        <FaEnvelope /> <strong>{user.email}</strong> <br />
+                        Email
+                    </p>
 
-                <p><FaBuildingColumns /> <strong>Departments</strong><br /></p>
-                <DepartmentList />
+                    <p>
+                        <FaBuildingColumns /> <strong>Departments</strong>
+                        <br />
+                    </p>
+                    <ul id='a'>
+                        {user.department.map(department => (
+                            <DepartmentList department={department} key={department.id} />
+                        ))}
+                    </ul>
+                </div>
+
+                <div className='links'>
+                    <Link to='/user'>
+                        <FaBars /> View
+                    </Link>
+                    <Link to='/employee/edit'>
+                        <FaFeatherPointed /> Edit
+                    </Link>
+                </div>
             </div>
-            
-            <div className="links">
-                <Link to="/user"><FaBars /> View</Link>
-                <Link to="/employee/edit"><FaFeatherPointed /> Edit</Link>
-            </div>
-        </div>
-    )
+        </>
+    ) : null
 }
 
 export default UserCard
