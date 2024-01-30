@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import departmentervice from '../services/departmentervice'
+import departmentService from '../services/departmentService'
 
 // Redux thunk to get all department.
 export const initilizeDepartment = createAsyncThunk(
     'department/getAll',
     async ({ rejectWithValue }) => {
         try {
-            const data = await departmentervice.getAlldepartment()
+            const data = await departmentService.getAlldepartment()
             return data
         } catch (exception) {
             return rejectWithValue(exception.response.data)
@@ -19,7 +19,7 @@ export const createDepartment = createAsyncThunk(
     'department/create',
     async (departmentObject, { rejectWithValue }) => {
         try {
-            const data = await departmentervice.createDepartment(departmentObject)
+            const data = await departmentService.createDepartment(departmentObject)
             return data
         } catch (exception) {
             return rejectWithValue(exception.response.data)
@@ -32,7 +32,7 @@ export const deleteDepartment = createAsyncThunk(
     'department/delete',
     async (departmentId, { rejectWithValue }) => {
         try {
-            const data = await departmentervice.deleteDepartmentUsingId(departmentId)
+            const data = await departmentService.deleteDepartmentUsingId(departmentId)
             return data
         } catch (exception) {
             return rejectWithValue(exception.response.data)
@@ -45,7 +45,7 @@ export const updateDepartment = createAsyncThunk(
     'department/update',
     async (departmentId, departmentObject, { rejectWithValue }) => {
         try {
-            const data = await departmentervice.updateDepartmentUsingId(
+            const data = await departmentService.updateDepartmentUsingId(
                 departmentId,
                 departmentObject
             )
