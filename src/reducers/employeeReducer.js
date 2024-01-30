@@ -2,15 +2,15 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import employeeService from '../services/employeeService'
 
 // Redux thunk to get all employees.
-export const initilizeEmployees = createAsyncThunk(
+export const initializeEmployees = createAsyncThunk(
     'employee/getAll',
-    async ({ rejectWithValue }) => {
-        try {
+    async () => {
+        // try {
             const data = await employeeService.getAllEmployees()
             return data
-        } catch (exception) {
-            return rejectWithValue(exception.response.data)
-        }
+        // } catch (exception) {
+        //     return rejectWithValue(exception.response.data)
+        // }
     }
 )
 
@@ -43,7 +43,7 @@ export const deleteEmployee = createAsyncThunk(
 // Redux thunk for updating an employee
 export const updateEmployee = createAsyncThunk(
     'employee/update',
-    async (employeeId, employeeObject, { rejectWithValue }) => {
+    async ({employeeId, employeeObject}, { rejectWithValue }) => {
         try {
             const data = await employeeService.updateEmployeeUsingId(
                 employeeId,
@@ -77,11 +77,14 @@ const employeeSlice = createSlice({
     // Go here.
     extraReducers: builder => {
         builder
-            .addCase(initilizeEmployees.fulfilled, (state, action) => {
+        .addCase(initializeEmployees.pending, (state, action) => {
+            state.status = "loading..."
+        })
+            .addCase(initializeEmployees.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.employees.push(action.payload)
+                state.employees = action.payload
             })
-            .addCase(initilizeEmployees.rejected, (state, action) => {
+            .addCase(initializeEmployees.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error
             })
