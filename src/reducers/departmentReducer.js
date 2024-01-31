@@ -2,15 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import departmentService from '../services/departmentService'
 
 // Redux thunk to get all department.
-export const initilizeDepartment = createAsyncThunk(
+export const initializeDepartment = createAsyncThunk(
     'department/getAll',
-    async ({ rejectWithValue }) => {
-        try {
-            const data = await departmentService.getAlldepartment()
-            return data
-        } catch (exception) {
-            return rejectWithValue(exception.response.data)
-        }
+    async () => {
+        const data = await departmentService.getAllDepartments()
+        return data
     }
 )
 
@@ -78,12 +74,12 @@ const departmentSlice = createSlice({
     extraReducers: builder => {
         builder
 
-            .addCase(initilizeDepartment.fulfilled, (state, action) => {
+            .addCase(initializeDepartment.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.department.push(action.payload)
+                state.department = action.payload
             })
 
-            .addCase(initilizeDepartment.rejected, (state, action) => {
+            .addCase(initializeDepartment.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error
             })

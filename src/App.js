@@ -25,6 +25,8 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import DepartmentEdit from './components/Department/DepartmentEdit'
 import DepartmentForm from './components/Department/DepartmentForm'
 import setUserTokenString, { employeeLocalStorage } from './services/shared'
+import { initializeDepartment } from './reducers/departmentReducer'
+import { initializeEmployees } from './reducers/employeeReducer'
 
 function App() {
     const dispatch = useDispatch()
@@ -50,6 +52,8 @@ function App() {
                 try {
                     const result = await dispatch(getUser(storedUser.userId)).unwrap()
                     console.log('Received Result From User Call---->', result)
+
+                    //todo <---- add to local storage.
                 } catch (res) {
                     console.log('Erorr or result ----->', res)
                     if (res.error === 'token expired') {
@@ -70,6 +74,37 @@ function App() {
 
     const loggedInUser = useSelector(state => state.user.userObject)
     console.log('User state ---->', loggedInUser)
+
+    useEffect(() => {
+        // If the user is an admin,
+        // Get all the departments.
+        async function callBackFunction() {
+            if (loggedInUser && loggedInUser.isAdmin) {
+                const departments = await dispatch(initializeDepartment()).unwrap()
+                console.log('Departments ------>', departments)
+
+                //todo <---- add to local storage
+            }
+        }
+        callBackFunction()
+    }, [dispatch, loggedInUser])
+
+    // Check if the user is an admin.
+    // Get all employees.
+    useEffect(() => {
+        async function callBackFunction() {
+            if (loggedInUser && loggedInUser.isAdmin) {
+                async function callbackFunction() {
+                    const employees = await dispatch(initializeEmployees()).unwrap()
+                    console.log('Employees received ----->', employees)
+
+                    //todo <---- add to local storge
+                }
+                callbackFunction()
+            }
+        }
+        callBackFunction()
+    })
 
     return (
         <div className='App'>

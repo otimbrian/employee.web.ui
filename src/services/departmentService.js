@@ -15,7 +15,7 @@ const getAllDepartments = async () => {
 }
 
 // Get a department with department id
-const getdepartmentWithId = async departmentId => {
+const getDepartmentWithId = async departmentId => {
     const data = getHeader(userToken)
 
     const response = await axios.get(`${baseDepartmentUrl}/${departmentId}`, data)
@@ -23,7 +23,7 @@ const getdepartmentWithId = async departmentId => {
 }
 
 // Create a department.
-const createdepartment = async departmentObject => {
+const createDepartment = async departmentObject => {
     const data = getHeader(userToken)
 
     const response = await axios.post(baseDepartmentUrl, departmentObject, data)
@@ -31,7 +31,7 @@ const createdepartment = async departmentObject => {
 }
 
 // Update a department using id.
-const updatedepartmentUsingId = async (departmentId, departmentObject) => {
+const updateDepartmentUsingId = async (departmentId, departmentObject) => {
     const data = getHeader(userToken)
 
     const response = await axios.put(
@@ -43,7 +43,7 @@ const updatedepartmentUsingId = async (departmentId, departmentObject) => {
 }
 
 // Delete n department using id.
-const deletedepartmentUsingId = async departmentId => {
+const deleteDepartmentUsingId = async departmentId => {
     const data = getHeader(userToken)
 
     const response = await axios.delete(
@@ -55,9 +55,9 @@ const deletedepartmentUsingId = async departmentId => {
 
 const departmentService = {
     getAllDepartments,
-    getdepartmentWithId,
-    createdepartment,
-    updatedepartmentUsingId,
-    deletedepartmentUsingId
+    getDepartmentWithId,
+    createDepartment,
+    updateDepartmentUsingId,
+    deleteDepartmentUsingId
 }
 export default departmentService

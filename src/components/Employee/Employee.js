@@ -1,24 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SelectForm from './SelectForm.js'
 import EmployeeList from './EmployeeList.js'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { UserCardFullDisplay } from '../User/Card.js'
 import { FaListUl, FaUserPlus } from 'react-icons/fa6'
-import { initializeEmployees } from '../../reducers/employeeReducer.js'
+// import { initializeEmployees } from '../../reducers/employeeReducer.js'
 
 const Employee = () => {
     const [selectedUser, setSelectedUser] = useState(null)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        async function callbackFunction() {
-            const employees = await dispatch(initializeEmployees()).unwrap()
-            console.log('Employees received ----->', employees)
-        }
-
-        callbackFunction()
-    }, [dispatch])
+    // const dispatch = useDispatch()
 
     const handleUserSelection = employee => {
         setSelectedUser(employee)

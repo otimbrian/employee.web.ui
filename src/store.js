@@ -10,7 +10,7 @@ const store = configureStore({
         user: userReducer,
         token: userTokenReducer,
         employees: employeeReducer,
-        deprtments: departmentReducer,
+        departments: departmentReducer,
         notification: notificationReducer
     }
 })
