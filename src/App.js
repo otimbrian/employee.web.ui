@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setUserToken } from './reducers/userTokenReducer'
 import Department from './components/Department/Department'
 import EmployeeForm from './components/Employee/EmployeeForm'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, useNavigate, useMatch } from 'react-router-dom'
 import DepartmentEdit from './components/Department/DepartmentEdit'
 import DepartmentForm from './components/Department/DepartmentForm'
 import setUserTokenString, { employeeLocalStorage } from './services/shared'
@@ -104,7 +104,13 @@ function App() {
             }
         }
         callBackFunction()
-    })
+    }, [dispatch, loggedInUser])
+
+    const employees = useSelector(state => state.employees.employees)
+    const match = useMatch('/:user/edit')
+    const employee = match
+        ? employees.find(employee => employee.id === match.params.user)
+        : undefined
 
     return (
         <div className='App'>
@@ -123,7 +129,7 @@ function App() {
                 <Route path='/recover' element={<Recover />} />
                 <Route path='/employees' element={<Employee />} />
                 <Route path='employees/create' element={<EmployeeForm />} />
-                <Route path='/employee/edit' element={<UserEditor />} />
+                <Route path='/:user/edit' element={<UserEditor user={employee}/>} />
                 <Route path='department' element={<Department />} />
                 <Route path='/card' element={<UserCard />}></Route>
                 <Route path='/department/edit' element={<DepartmentEdit />} />

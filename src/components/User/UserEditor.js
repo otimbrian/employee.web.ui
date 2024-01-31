@@ -1,10 +1,65 @@
-// import { FaArrowLeft } from "react-icons/fa";
-// import { Link } from "react-router-dom";
-import NavigateBack from "../NavigateBack";
-import { FcDeleteDatabase } from "react-icons/fc";
-import { AiFillDelete } from "react-icons/ai";
+import { useState } from 'react'
+import NavigateBack from '../NavigateBack'
+import { useNavigate } from 'react-router-dom'
 
-const UserEditor = () => {
+// import NavigateBack from "../NavigateBack";
+import { FcDeleteDatabase } from "react-icons/fc";
+import { useDispatch, useSelector } from 'react-redux'
+
+
+const DepartmentList = ({ department, handleDelete }) => {
+    return <li>{department.name} <button onClick={handleDelete} ><FcDeleteDatabase /></button></li>
+}
+
+const UserEditor = ({ user }) => {
+    const [name, setName] = useState(user.name)
+    const [email, setEmail] = useState(user.email)
+    // const [password, setPassword] = useState('')
+    const [username, setUserName] = useState(user.surname)
+    // const [isAdmin, setIsAdmin] = useState(false)
+    const [department, setDepartment] = useState(user.department)
+
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    // Handle department deletion.
+    // From the list of departments to which a user belongs.
+    const handleDelete = (id) => {
+
+        console.log("Id to be deleted ---->", id)
+        setDepartment(department.filter(depart => depart.id !== id))
+    }
+
+    const handleDepartment = e => {
+        e.preventDefault()
+        // console.log("Department value ---> ", e.target.value)
+        const selected = JSON.parse(e.target.value)
+        const found = department.find(dep => dep.id === selected.id)
+
+        if (!found) {
+            setDepartment([...department, selected])
+        }
+    }
+
+    // Handler for updating the employee.
+    const handleUpdate = e => {
+        e.preventDefault()
+
+        const newUser = {
+            ...user,
+            name: name,
+            surname: username,
+            department: department,
+            email: email
+        }
+
+
+        console.log('User to be created ----->', newUser)
+    }
+
+    const departments = useSelector(state => state.departments.department)
+
     return (
         <>
             <div className="employee-content">
@@ -14,37 +69,37 @@ const UserEditor = () => {
                 </Link> */}
             </div>
             <br />
-            <div className="employee-content">
-                <div className="content">
-                    <div className="column-one">
-                        <h4>Employee Form</h4>
+            <form id='editor-form'>
+                <div className="employee-content">
+                    <div className="content">
+                        <div className="column-one">
 
-                        <form>
+
                             <fieldset>
                                 <legend>Personal Details:</legend>
                                 <div>
-                                    <label id="user-detail"><strong>Otim Brian</strong></label>
-                                    <label id="user-detail"><strong>Otim</strong></label>
+                                    <label id="user-detail"><strong>{user.name}</strong></label>
+                                    <label id="user-detail"><strong>{user.surname}</strong></label>
                                     <br />
                                     <br />
                                     <label>
                                         <strong>Name:</strong>
-                                        <input type="text" name="name" placeholder="Full Name" required="required" id="input-text" />
+                                        <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Full Name" required="required" id="input-text" />
                                     </label>
                                     <label>
                                         <strong>Username:</strong>
-                                        <input type="text" name="username" placeholder="Username" required="required" id="input-text" />
+                                        <input type="text" name="username" value={username} onChange={e => setUserName(e.target.value)} placeholder="Username" required="required" id="input-text" />
                                     </label>
                                 </div>
                                 <br />
                                 <br />
                                 <br />
-                                <label><strong>otim.brian@gmail.com</strong></label>
+                                <label><strong>{user.email}</strong></label>
                                 <br />
                                 <br />
                                 <label>
                                     <strong>Email:</strong>
-                                    <input type="email" name="email" placeholder="Email" required="required" />
+                                    <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required="required" />
                                 </label>
                                 {/* <label>
             <strong>Password:</strong>
@@ -56,33 +111,38 @@ const UserEditor = () => {
                                 <legend>Technical:</legend>
                                 <label>
                                     <strong>Department:</strong>
-                                    <select name="department">
-                                        <option value="ipod">iPod</option>
-                                        <option value="radio">Radio</option>
-                                        <option value="computer">Computer</option>
+                                    <select name='department' onChange={handleDepartment} multiple='multiple'>
+                                        {departments.map(department => (
+                                            <option
+                                                key={department.id}
+                                                value={JSON.stringify(department)}
+                                            >
+                                                {department.name}
+                                            </option>
+                                        ))}
                                     </select>
                                 </label>
                             </fieldset>
 
                             {/* {// todo -------> Make sure this is exported as a component } */}
-                        </form>
-                    </div>
-                    <div className="column-two">
-                        <h4>Departments</h4>
-                        <div>
-                            <ul id="department-list">
-                                <li>Department one <button><FcDeleteDatabase /> </button></li>
-                                <li>Department one <button><AiFillDelete /></button></li>
-                                <li>Department one <button><AiFillDelete /></button></li>
-                                <li>Department one <button><AiFillDelete /></button></li>
-                            </ul>
+
+                        </div>
+                        <div className="column-two">
+                            <h4>Departments</h4>
+                            <div>
+                                <ul id="department-list">
+                                    {
+                                        department.map(depart => <DepartmentList department={depart} key={depart.id} handleDelete={() => handleDelete(depart.id)} />)
+                                    }
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="employee-content">
-                <input type="submit" value="Update User" />
-            </div>
+                <div className="employee-content">
+                    <input type="submit" value="Update User" onClick={handleUpdate} />
+                </div>
+            </form>
         </>
     )
 }

@@ -58,10 +58,10 @@ export const UserCardFullDisplay = ({ user }) => {
                 </div>
 
                 <div className='links'>
-                    <Link to='/user'>
+                    <Link to={`/${user.id}`}>
                         <FaBars /> View
                     </Link>
-                    <Link to='/employee/edit'>
+                    <Link to={`/${user.id}/edit`}>
                         <FaFeatherPointed /> Edit
                     </Link>
                 </div>

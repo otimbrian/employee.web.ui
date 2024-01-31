@@ -24,6 +24,13 @@
     display: flex;
 }
 
+form#editor-form {
+    height: 450px;
+    width: 720px;
+    padding-left: 100px;
+    align-self: center;
+}
+
 .form-content{
     display: flex;
 }
