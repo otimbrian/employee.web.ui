@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 // import NavigateBack from "../NavigateBack";
 import { FcDeleteDatabase } from "react-icons/fc";
 import { useDispatch, useSelector } from 'react-redux'
+import { updateEmployee } from '../../reducers/employeeReducer';
 
 
 const DepartmentList = ({ department, handleDelete }) => {
@@ -26,8 +27,6 @@ const UserEditor = ({ user }) => {
     // Handle department deletion.
     // From the list of departments to which a user belongs.
     const handleDelete = (id) => {
-
-        console.log("Id to be deleted ---->", id)
         setDepartment(department.filter(depart => depart.id !== id))
     }
 
@@ -43,7 +42,7 @@ const UserEditor = ({ user }) => {
     }
 
     // Handler for updating the employee.
-    const handleUpdate = e => {
+    const handleUpdate = async e => {
         e.preventDefault()
 
         const newUser = {
@@ -54,8 +53,17 @@ const UserEditor = ({ user }) => {
             email: email
         }
 
-
         console.log('User to be created ----->', newUser)
+        try{
+            const updatedEmployee = await dispatch(updateEmployee({employeeId: user.id, employeeObject:newUser})).unwrap()
+            console.log('Updated user ---->', updatedEmployee)
+            //todo <----- Add to local storage.
+
+            navigate('/employees')
+
+        }catch(exception){
+            console.log("Exception ocurred ----->", exception);
+        }
     }
 
     const departments = useSelector(state => state.departments.department)

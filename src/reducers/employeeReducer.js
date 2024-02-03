@@ -43,11 +43,11 @@ export const deleteEmployee = createAsyncThunk(
 // Redux thunk for updating an employee
 export const updateEmployee = createAsyncThunk(
     'employee/update',
-    async ({employeeId, employeeObject}, { rejectWithValue }) => {
+    async (requestParam, { rejectWithValue }) => {
         try {
             const data = await employeeService.updateEmployeeUsingId(
-                employeeId,
-                employeeObject
+                requestParam.employeeId,
+                requestParam.employeeObject
             )
             return data
         } catch (exception) {
@@ -112,7 +112,7 @@ const employeeSlice = createSlice({
         builder
             .addCase(updateEmployee.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                return state.employees.map(employee => {
+                state.employees = state.employees.map(employee => {
                     return employee.id !== action.payload.id ? employee : action.payload
                 })
             })

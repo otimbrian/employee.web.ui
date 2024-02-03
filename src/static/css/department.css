@@ -9,6 +9,10 @@
     /* float: left; */
 }
 
+.department-card:hover{
+    cursor: pointer;
+}
+
 .employee-content h4#depart-head {
     padding: 10px;
 }
