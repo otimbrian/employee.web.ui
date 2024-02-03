@@ -1,49 +1,60 @@
 import { FaBuildingColumns, FaUserGroup, FaFeatherPointed, FaBars } from "react-icons/fa6";
+import { useState } from 'react'
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
-const DepartmentCard = () => {
+const DepartmentCard = ({ department, selected }) => {
     return (
-        <div className="department-card">
-            <article><FaBuildingColumns /></article>
-            <div className="department-container">
-                <h4 id="cap"><i>DEPARTMENT ONE</i></h4>
-                <p><FaUserGroup /> <strong>3</strong> <br />
-                    Employees</p>
+        <li>
+            <div className="department-card" onClick={() => selected(department)}>
+                <article><FaBuildingColumns /></article>
+                <div className="department-container">
+                    <h4 id="cap"><i>{department.name}</i></h4>
+                    <p><FaUserGroup /> <strong>{department.employees.length}</strong> <br />
+                        Employees</p>
+                </div>
             </div>
-        </div>
+        </li>
     )
 }
 
-const EmployeeList = () => {
+const EmployeeList = ({employees}) => {
     return (
         <ul id="depart-ul">
-            <li>department one</li>
-            <li>department two</li>
+            {
+                employees.map(employee => <li key={employee.id}>{employee.name}</li>)
+            }
         </ul>
     )
 }
 
-const SelectedDepartment = () => {
+const SelectedDepartment = ({department}) => {
     return (
         <div className="selected-department">
             <article><FaBuildingColumns /></article>
             <div className="depart-container">
-                <h4><i>DEPARTMENT ONE</i></h4>
-                <p><FaUserGroup /> <strong>3</strong> <br />
+                <h4><i>{department.name}</i></h4>
+                <p><FaUserGroup /> <strong>{department.employees.length}</strong> <br />
                     Employees</p>
 
                 <p><strong>EMPLOYEES</strong></p>
-                <EmployeeList />
+                <EmployeeList employees={department.employees}/>
             </div>
             <div className="links">
                 <Link to="/user"><FaBars /> View</Link>
-                <Link to="/department/edit"><FaFeatherPointed /> Edit</Link>
+                <Link to={`/department/edit/${department.id}`}><FaFeatherPointed /> Edit</Link>
             </div>
 
         </div>
     )
 }
 const Department = () => {
+    const [selectedDepartment, setSelectedDepartment] = useState(null)
+
+    const selectHandler = department => {
+        setSelectedDepartment(department)
+    }
+    const departments = useSelector(state => state.departments.department)
     return (
         <>
             <div className="employee-content">
@@ -54,14 +65,19 @@ const Department = () => {
                 <div className="depart">
                     <div className="department-list">
                         <ul id="department-card-list">
-                            <li><DepartmentCard /></li>
-                            <li><DepartmentCard /></li>
-                            <li><DepartmentCard /></li>
+                            {
+                                departments.map(depart => <DepartmentCard department={depart} key={depart.id} selected={selectHandler}/>)
+                            }
                         </ul>
                     </div>
-                    <div className="second-column">
-                        <SelectedDepartment />
-                    </div>
+                    {
+                        selectedDepartment
+                            ?
+                            <div className="second-column">
+                                <SelectedDepartment department={selectedDepartment}/>
+                            </div>
+                            : null
+                    }
                 </div>
             </div>
         </>
