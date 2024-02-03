@@ -112,6 +112,13 @@ function App() {
         ? employees.find(employee => employee.id === match.params.user)
         : undefined
 
+
+    const departments = useSelector(state => state.departments.department)
+    const departmenEditorMatch = useMatch('/department/edit/:departmentId')
+    const departmentToEdit = departmenEditorMatch
+        ? departments.find(department => department.id === departmenEditorMatch.params.departmentId)
+        :undefined
+
     return (
         <div className='App'>
             <div id='logo'>
@@ -132,7 +139,7 @@ function App() {
                 <Route path='/:user/edit' element={<UserEditor user={employee}/>} />
                 <Route path='department' element={<Department />} />
                 <Route path='/card' element={<UserCard />}></Route>
-                <Route path='/department/edit' element={<DepartmentEdit />} />
+                <Route path='/department/edit/:departmentId' element={<DepartmentEdit department={departmentToEdit} />} />
                 <Route path='/department/create' element={<DepartmentForm />} />
             </Routes>
 

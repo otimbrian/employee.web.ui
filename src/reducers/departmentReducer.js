@@ -39,11 +39,12 @@ export const deleteDepartment = createAsyncThunk(
 // Redux thunk for updating an Department
 export const updateDepartment = createAsyncThunk(
     'department/update',
-    async (departmentId, departmentObject, { rejectWithValue }) => {
+    async (params, { rejectWithValue }) => {
+
         try {
             const data = await departmentService.updateDepartmentUsingId(
-                departmentId,
-                departmentObject
+                params.departmentId,
+                params.departmentObject
             )
             return data
         } catch (exception) {
