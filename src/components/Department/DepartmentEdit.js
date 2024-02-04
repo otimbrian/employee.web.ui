@@ -1,9 +1,9 @@
-import ListCard from "../ListCard"
+import ListCard from '../ListCard'
 import { useState } from 'react'
-import NavigateBack from "../NavigateBack"
-import { useNavigate} from 'react-router-dom'
+import NavigateBack from '../NavigateBack'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateDepartment } from "../../reducers/departmentReducer"
+import { updateDepartment } from '../../reducers/departmentReducer'
 
 const DepartmentEdit = ({ department }) => {
     const [name, setName] = useState(department.name)
@@ -12,11 +12,11 @@ const DepartmentEdit = ({ department }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleDelete = (id) => {
+    const handleDelete = id => {
         setEmployee(employee.filter(e => e.id !== id))
     }
 
-    const handleDeprtmentUpdate = (e) => {
+    const handleDeprtmentUpdate = e => {
         e.preventDefault()
 
         const updatedDepartment = {
@@ -26,13 +26,17 @@ const DepartmentEdit = ({ department }) => {
         }
 
         try {
-            const update = dispatch(updateDepartment({departmentId:department.id, departmentObject: updatedDepartment}))
+            const update = dispatch(
+                updateDepartment({
+                    departmentId: department.id,
+                    departmentObject: updatedDepartment
+                })
+            )
             console.log('Updated department ----->', update)
 
-            navigate("/department")
-
+            navigate('/department')
         } catch (error) {
-            
+            console.log('Error in updating department', error)
         }
     }
 
@@ -50,30 +54,45 @@ const DepartmentEdit = ({ department }) => {
     const employees = useSelector(state => state.employees.employees)
     return (
         <>
-            <div className="employee-content">
+            <div className='employee-content'>
                 <NavigateBack />
             </div>
             <br />
-            <div className="employee-content">
+            <div className='employee-content'>
                 <h4>Department Editor</h4>
-                <div className="department-column-one">
+                <div className='department-column-one'>
                     <form>
-                        <fieldset id="dep-field">
+                        <fieldset id='dep-field'>
                             <legend>Department Form</legend>
                             <div>
-                                <label id="user-detail"><strong>{department.name}</strong></label>
+                                <label id='user-detail'>
+                                    <strong>{department.name}</strong>
+                                </label>
                                 <br />
                                 <label>
                                     <strong>Name:</strong>
-                                    <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Department Name" required="required" />
+                                    <input
+                                        type='text'
+                                        name='name'
+                                        value={name}
+                                        onChange={e => setName(e.target.value)}
+                                        placeholder='Department Name'
+                                        required='required'
+                                    />
                                 </label>
                                 <br />
                                 <br />
-                                <label id="user-detail"><strong>Employees</strong></label>
+                                <label id='user-detail'>
+                                    <strong>Employees</strong>
+                                </label>
                                 <br />
                                 <label>
                                     <strong>Employees:</strong>
-                                    <select name="employees" onChange={handleEmployee} multiple='multiple'>
+                                    <select
+                                        name='employees'
+                                        onChange={handleEmployee}
+                                        multiple='multiple'
+                                    >
                                         {employees.map(employee => (
                                             <option
                                                 key={employee.id}
@@ -83,31 +102,35 @@ const DepartmentEdit = ({ department }) => {
                                             </option>
                                         ))}
                                     </select>
-
                                 </label>
                             </div>
                         </fieldset>
                     </form>
                 </div>
-                <div className="column-two" id="employee-display-">
+                <div className='column-two' id='employee-display-'>
                     <h4>Employees</h4>
                     <div>
-                        <ul id="department-list">
-                            {
-                                employee.map(
-                                    empl => <ListCard key={empl.id} employee={empl} handleDelete={() => handleDelete(empl.id)} />
-                                )
-                            }
+                        <ul id='department-list'>
+                            {employee.map(empl => (
+                                <ListCard
+                                    key={empl.id}
+                                    employee={empl}
+                                    handleDelete={() => handleDelete(empl.id)}
+                                />
+                            ))}
                         </ul>
                     </div>
                 </div>
             </div>
-            <div className="employee-content">
-                <input type="submit" value="Update Department" onClick={handleDeprtmentUpdate} />
+            <div className='employee-content'>
+                <input
+                    type='submit'
+                    value='Update Department'
+                    onClick={handleDeprtmentUpdate}
+                />
             </div>
         </>
     )
 }
-
 
 export default DepartmentEdit
