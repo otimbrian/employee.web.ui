@@ -38,6 +38,10 @@
     overflow: scroll;
 }
 
+.column-two#employee-display-{
+    height: 189px;
+}
+
 .column-one {
     background-color: #efefef;
     width: 470px;

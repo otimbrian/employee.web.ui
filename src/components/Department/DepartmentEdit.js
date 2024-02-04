@@ -1,6 +1,7 @@
 import ListCard from "../ListCard"
 import { useState } from 'react'
 import NavigateBack from "../NavigateBack"
+import { useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateDepartment } from "../../reducers/departmentReducer"
 
@@ -9,6 +10,7 @@ const DepartmentEdit = ({ department }) => {
     const [employee, setEmployee] = useState(department.employees)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleDelete = (id) => {
         setEmployee(employee.filter(e => e.id !== id))
@@ -26,6 +28,9 @@ const DepartmentEdit = ({ department }) => {
         try {
             const update = dispatch(updateDepartment({departmentId:department.id, departmentObject: updatedDepartment}))
             console.log('Updated department ----->', update)
+
+            navigate("/department")
+
         } catch (error) {
             
         }
