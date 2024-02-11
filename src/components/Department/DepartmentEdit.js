@@ -16,7 +16,7 @@ const DepartmentEdit = ({ department }) => {
         setEmployee(employee.filter(e => e.id !== id))
     }
 
-    const handleDeprtmentUpdate = e => {
+    const handleDepartmentUpdate = async e => {
         e.preventDefault()
 
         const updatedDepartment = {
@@ -26,12 +26,12 @@ const DepartmentEdit = ({ department }) => {
         }
 
         try {
-            const update = dispatch(
+            const update = await dispatch(
                 updateDepartment({
                     departmentId: department.id,
                     departmentObject: updatedDepartment
                 })
-            )
+            ).unwrap()
             console.log('Updated department ----->', update)
 
             navigate('/department')
@@ -126,7 +126,7 @@ const DepartmentEdit = ({ department }) => {
                 <input
                     type='submit'
                     value='Update Department'
-                    onClick={handleDeprtmentUpdate}
+                    onClick={handleDepartmentUpdate}
                 />
             </div>
         </>

@@ -77,7 +77,10 @@ const Department = () => {
     const selectHandler = department => {
         setSelectedDepartment(department)
     }
+
     const departments = useSelector(state => state.departments.department)
+    console.log("Departments --->",departments)
+
     return (
         <>
             <div className='employee-content'>
@@ -86,7 +89,7 @@ const Department = () => {
             <div className='employee-content'>
                 <h4 id='depart-head'>Department</h4>
                 <div className='depart'>
-                    {departments ? (
+                    {/* {departments ? ( */}
                         <div className='department-list'>
                             <ul id='department-card-list'>
                                 {departments.map(depart => (
@@ -98,7 +101,7 @@ const Department = () => {
                                 ))}
                             </ul>
                         </div>
-                    ) : null}
+                    {/* ) : null} */}
                     {selectedDepartment ? (
                         <div className='second-column'>
                             <SelectedDepartment department={selectedDepartment} />

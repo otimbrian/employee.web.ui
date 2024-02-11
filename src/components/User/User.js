@@ -29,7 +29,7 @@ const User = () => {
             <div className='employee-content'>
                 <UserDisplay user={user} />
             </div>
-            <ButtonLink link={'/employee/edit'} value={'Edit User'} />
+            <ButtonLink link={`/${user.id}/edit`} value={'Edit User'} />
         </>
     )
 }
