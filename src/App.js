@@ -114,9 +114,10 @@ function App() {
 
 
     const departments = useSelector(state => state.departments.department)
-    const departmenEditorMatch = useMatch('/department/edit/:departmentId')
-    const departmentToEdit = departmenEditorMatch
-        ? departments.find(department => department.id === departmenEditorMatch.params.departmentId)
+    console.log("Departments in App ----->", departments)
+    const departmentEditorMatch = useMatch('/department/edit/:departmentId')
+    const departmentToEdit = departmentEditorMatch
+        ? departments.find(department => department.id === departmentEditorMatch.params.departmentId)
         :undefined
 
     return (
