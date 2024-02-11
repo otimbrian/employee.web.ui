@@ -4,6 +4,8 @@ import NavigateBack from '../NavigateBack'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateDepartment } from '../../reducers/departmentReducer'
+// import Notification from '../Notification'
+import { showNotification, disableNotification } from '../../reducers/notificationReducer'
 
 const DepartmentEdit = ({ department }) => {
     const [name, setName] = useState(department.name)
@@ -14,6 +16,18 @@ const DepartmentEdit = ({ department }) => {
 
     const handleDelete = id => {
         setEmployee(employee.filter(e => e.id !== id))
+    }
+
+    const post = (message, status) => {
+        dispatch(
+            showNotification({
+                message: message,
+                status: 'error'
+            })
+        )
+        setTimeout(() => {
+            dispatch(disableNotification())
+        }, 5000)
     }
 
     const handleDepartmentUpdate = async e => {
@@ -33,10 +47,12 @@ const DepartmentEdit = ({ department }) => {
                 })
             ).unwrap()
             console.log('Updated department ----->', update)
+            // todo <---- Update deprtment local storage.
 
             navigate('/department')
-        } catch (error) {
-            console.log('Error in updating department', error)
+        } catch (exception) {
+            console.log('Error in updating department', exception)
+            
         }
     }
 
@@ -122,6 +138,7 @@ const DepartmentEdit = ({ department }) => {
                     </div>
                 </div>
             </div>
+            
             <div className='employee-content'>
                 <input
                     type='submit'
