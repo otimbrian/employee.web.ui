@@ -40,7 +40,6 @@ export const deleteDepartment = createAsyncThunk(
 export const updateDepartment = createAsyncThunk(
     'department/update',
     async (params, { rejectWithValue }) => {
-
         try {
             const data = await departmentService.updateDepartmentUsingId(
                 params.departmentId,
@@ -101,8 +100,9 @@ const departmentSlice = createSlice({
 
             .addCase(deleteDepartment.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                //todo <----- remove the DepartmentId from the database.
-                // state.department.push(action.payload)
+                state.department = state.department.filter(
+                    d => d.id !== action.payload.id
+                )
             })
 
             .addCase(deleteDepartment.rejected, (state, action) => {
@@ -113,7 +113,7 @@ const departmentSlice = createSlice({
 
             .addCase(updateDepartment.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                return state.department.map(Department => {
+                state.department = state.department.map(Department => {
                     return Department.id !== action.payload.id
                         ? Department
                         : action.payload

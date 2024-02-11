@@ -6,8 +6,8 @@ export const initializeEmployees = createAsyncThunk(
     'employee/getAll',
     async () => {
         // try {
-            const data = await employeeService.getAllEmployees()
-            return data
+        const data = await employeeService.getAllEmployees()
+        return data
         // } catch (exception) {
         //     return rejectWithValue(exception.response.data)
         // }
@@ -77,9 +77,9 @@ const employeeSlice = createSlice({
     // Go here.
     extraReducers: builder => {
         builder
-        .addCase(initializeEmployees.pending, (state, action) => {
-            state.status = "loading..."
-        })
+            .addCase(initializeEmployees.pending, (state, action) => {
+                state.status = 'loading...'
+            })
             .addCase(initializeEmployees.fulfilled, (state, action) => {
                 state.status = 'succeeded'
                 state.employees = action.payload
@@ -102,8 +102,9 @@ const employeeSlice = createSlice({
         builder
             .addCase(deleteEmployee.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                //todo <----- remove the employeeId from the database.
-                // state.employees.push(action.payload)
+                state.employees = state.employees.filter(
+                    employee => employee.id !== action.payload.id
+                )
             })
             .addCase(deleteEmployee.rejected, (state, action) => {
                 state.status = 'failed'
