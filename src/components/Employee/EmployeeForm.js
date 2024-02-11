@@ -4,7 +4,12 @@ import { useState } from 'react'
 import NavigateBack from '../NavigateBack'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import Notification from '../Notification'
 import { createEmployee } from '../../reducers/employeeReducer'
+import {
+    showNotification,
+    disableNotification
+} from '../../reducers/notificationReducer'
 
 const EmployeeForm = () => {
     const [name, setName] = useState('')
@@ -18,6 +23,18 @@ const EmployeeForm = () => {
     const navigate = useNavigate()
 
     const departments = useSelector(state => state.departments.department)
+
+    const post = (message, status) => {
+        dispatch(
+            showNotification({
+                message: message,
+                status: 'error'
+            })
+        )
+        setTimeout(() => {
+            dispatch(disableNotification())
+        }, 5000)
+    }
 
     const employeeCreate = async event => {
         event.preventDefault()
@@ -34,14 +51,25 @@ const EmployeeForm = () => {
         console.log('=====Trying to create Employee ======')
         console.log('New employee ------>', newEmployee)
 
-        const createdEmployee = await dispatch(createEmployee(newEmployee)).unwrap()
-        console.log('Created Employee ----->', createdEmployee)
+        try {
+            const createdEmployee = await dispatch(
+                createEmployee(newEmployee)
+            ).unwrap()
+            console.log('Created Employee ----->', createdEmployee)
 
-        //todo <-----------Make sure you add to local storage inorder to manage refresh actions.
+            //todo <-----------Make sure you add to local storage inorder to manage refresh actions.
 
-        // After creating, navigate back to
-        // User display
-        navigate('/employees')
+            // After creating, navigate back to
+            // User display
+            navigate('/employees')
+        } catch (exception) {
+            if (
+                exception.error.includes('to be unique') &&
+                exception.error.startsWith('Employee validation failed:')
+            ) {
+                post('Duplicate Already Exists', 'error')
+            }
+        }
     }
 
     const handleDepartment = e => {
@@ -161,6 +189,9 @@ const EmployeeForm = () => {
                         />
                     </fieldset>
                 </form>
+            </div>
+            <div className='employee-content'>
+                <Notification />
             </div>
         </>
     )
