@@ -31,6 +31,6 @@ export const disableNotification = () => {
     }
 }
 
-export const { postNotification, removeNotification } =
+const { postNotification, removeNotification } =
     notificationSlice.actions
 export default notificationSlice.reducer

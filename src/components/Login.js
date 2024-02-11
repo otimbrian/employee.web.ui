@@ -4,7 +4,7 @@ import Notification from './Notification.js'
 import { useDispatch } from 'react-redux'
 import {
     disableNotification,
-    postNotification
+    showNotification
 } from '../reducers/notificationReducer.js'
 import { userLogin } from '../reducers/userTokenReducer.js'
 import setUserTokenString, { employeeLocalStorage } from '../services/shared.js'
@@ -18,7 +18,7 @@ const Login = () => {
     // Function to handle Notifiction assignment.
     const post = (message, status) => {
         dispatch(
-            postNotification({
+            showNotification({
                 message: message,
                 status: 'error'
             })
