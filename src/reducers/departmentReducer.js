@@ -4,9 +4,13 @@ import departmentService from '../services/departmentService'
 // Redux thunk to get all department.
 export const initializeDepartment = createAsyncThunk(
     'department/getAll',
-    async () => {
-        const data = await departmentService.getAllDepartments()
-        return data
+    async (_x, { rejectWithValue }) => {
+        try {
+            const data = await departmentService.getAllDepartments()
+            return data
+        } catch (exception) {
+            return rejectWithValue(exception.response.data)
+        }
     }
 )
 

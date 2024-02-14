@@ -1,88 +1,33 @@
 import { useState } from 'react'
-import NavigateBack from '../NavigateBack'
-import { useNavigate } from 'react-router-dom'
-
-// import NavigateBack from "../NavigateBack";
-import { FcDeleteDatabase } from "react-icons/fc";
+import NavigateBack from "../NavigateBack"
 import { useDispatch, useSelector } from 'react-redux'
-import { updateEmployee } from '../../reducers/employeeReducer';
 
 
-const DepartmentList = ({ department, handleDelete }) => {
-    return <li>{department.name} <button onClick={handleDelete} ><FcDeleteDatabase /></button></li>
+const DepartmentList = ({ department }) => {
+    return <li>{department.name}</li>
 }
 
-const UserEditor = ({ user }) => {
+
+const UserEditor = ({user}) => {
     const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
-    // const [password, setPassword] = useState('')
     const [username, setUserName] = useState(user.surname)
-    // const [isAdmin, setIsAdmin] = useState(false)
-    const [department, setDepartment] = useState(user.department)
 
-
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    // Handle department deletion.
-    // From the list of departments to which a user belongs.
-    const handleDelete = (id) => {
-        setDepartment(department.filter(depart => depart.id !== id))
+    const handleUpdate = (e) => {
+        e.preventDefult()
     }
 
-    const handleDepartment = e => {
-        e.preventDefault()
-        // console.log("Department value ---> ", e.target.value)
-        const selected = JSON.parse(e.target.value)
-        const found = department.find(dep => dep.id === selected.id)
-
-        if (!found) {
-            setDepartment([...department, selected])
-        }
-    }
-
-    // Handler for updating the employee.
-    const handleUpdate = async e => {
-        e.preventDefault()
-
-        const newUser = {
-            ...user,
-            name: name,
-            surname: username,
-            department: department,
-            email: email
-        }
-
-        console.log('User to be created ----->', newUser)
-        try{
-            const updatedEmployee = await dispatch(updateEmployee({employeeId: user.id, employeeObject:newUser})).unwrap()
-            console.log('Updated user ---->', updatedEmployee)
-            //todo <----- Add to local storage.
-
-            navigate('/employees')
-
-        }catch(exception){
-            console.log("Exception ocurred ----->", exception);
-        }
-    }
-
-    const departments = useSelector(state => state.departments.department)
-
+    // const loggedInUser = useSelector(state => state.user.userObject)
     return (
         <>
             <div className="employee-content">
                 <NavigateBack />
-                {/* <Link to="/user">
-                    <FaArrowLeft />Back
-                </Link> */}
             </div>
             <br />
             <form id='editor-form'>
                 <div className="employee-content">
                     <div className="content">
                         <div className="column-one">
-
-
                             <fieldset>
                                 <legend>Personal Details:</legend>
                                 <div>
@@ -109,27 +54,7 @@ const UserEditor = ({ user }) => {
                                     <strong>Email:</strong>
                                     <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required="required" />
                                 </label>
-                                {/* <label>
-            <strong>Password:</strong>
-            <input type="password" name="password" placeholder="Password" required="required" />
-        </label> */}
-
-                            </fieldset>
-                            <fieldset>
-                                <legend>Technical:</legend>
-                                <label>
-                                    <strong>Department:</strong>
-                                    <select name='department' onChange={handleDepartment} multiple='multiple'>
-                                        {departments.map(department => (
-                                            <option
-                                                key={department.id}
-                                                value={JSON.stringify(department)}
-                                            >
-                                                {department.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </label>
+                                <br /><br />
                             </fieldset>
 
                             {/* {// todo -------> Make sure this is exported as a component } */}
@@ -138,14 +63,27 @@ const UserEditor = ({ user }) => {
                         <div className="column-two">
                             <h4>Departments</h4>
                             <div>
-                                <ul id="department-list">
+                                <ul id='a'>
                                     {
-                                        department.map(depart => <DepartmentList department={depart} key={depart.id} handleDelete={() => handleDelete(depart.id)} />)
+                                        user.department.map(depart => <DepartmentList department={depart} key={depart.id} />)
                                     }
                                 </ul>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="employee-content">
+                    
+                                 <label>
+                                    <strong>New Password:</strong><br/>
+                                    <input type="password" name="password" placeholder="Password" required="required" />
+                                </label> 
+                                <br />
+                                <br />
+                                <label>
+                                    <strong>Confirm New Password:</strong><br />
+                                    <input type="password" name="password" placeholder="Password" required="required" />
+                                </label><br /> 
                 </div>
                 <div className="employee-content">
                     <input type="submit" value="Update User" onClick={handleUpdate} />
