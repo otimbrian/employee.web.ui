@@ -176,8 +176,6 @@ const EmployeeEditor = ({ user }) => {
                                     </label>
                                 </fieldset>
                             ) : null}
-
-                            {/* {// todo -------> Make sure this is exported as a component } */}
                         </div>
                         <div className='column-two'>
                             <h4>Departments</h4>
