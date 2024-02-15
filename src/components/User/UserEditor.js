@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import NavigateBack from "../NavigateBack"
+import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { updateEmployee } from '../../reducers/employeeReducer';
+import {updatingUser} from '../../reducers/userReducer'
 
 
 const DepartmentList = ({ department }) => {
@@ -13,8 +16,36 @@ const UserEditor = ({user}) => {
     const [email, setEmail] = useState(user.email)
     const [username, setUserName] = useState(user.surname)
 
-    const handleUpdate = (e) => {
-        e.preventDefult()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    
+
+    const handleUpdate = async (e) => {
+        e.preventDefault()
+
+        const newUpdatedFields = {
+            ...user,
+            name: name,
+            email: email,
+            surname: username
+        }
+
+       try {
+
+        // Send updates to the database.
+        console.log("New Values ------>", newUpdatedFields)
+        const updatedUser = await dispatch(updateEmployee({ employeeId: user.id, employeeObject: newUpdatedFields })).unwrap()
+
+        // Update the user reducer for the logged in user.
+        dispatch(updatingUser(updatedUser))
+
+        // Navigate to the previous tab.
+        navigate(-1)
+
+       } catch (exception) {
+        console.log(exception)
+       }
     }
 
     // const loggedInUser = useSelector(state => state.user.userObject)
@@ -22,6 +53,9 @@ const UserEditor = ({user}) => {
         <>
             <div className="employee-content">
                 <NavigateBack />
+                <div>
+                    <input type="button" value="Change Password" onClick={() => navigate(`/user/${user.id}/change-password`)}/>
+                </div>
             </div>
             <br />
             <form id='editor-form'>
@@ -56,9 +90,6 @@ const UserEditor = ({user}) => {
                                 </label>
                                 <br /><br />
                             </fieldset>
-
-                            {/* {// todo -------> Make sure this is exported as a component } */}
-
                         </div>
                         <div className="column-two">
                             <h4>Departments</h4>
@@ -72,19 +103,7 @@ const UserEditor = ({user}) => {
                         </div>
                     </div>
                 </div>
-                <div className="employee-content">
-                    
-                                 <label>
-                                    <strong>New Password:</strong><br/>
-                                    <input type="password" name="password" placeholder="Password" required="required" />
-                                </label> 
-                                <br />
-                                <br />
-                                <label>
-                                    <strong>Confirm New Password:</strong><br />
-                                    <input type="password" name="password" placeholder="Password" required="required" />
-                                </label><br /> 
-                </div>
+                
                 <div className="employee-content">
                     <input type="submit" value="Update User" onClick={handleUpdate} />
                 </div>

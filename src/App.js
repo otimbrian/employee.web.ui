@@ -20,6 +20,7 @@ import Employee from './components/Employee/Employee'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserToken } from './reducers/userTokenReducer'
 import Department from './components/Department/Department'
+import ChangePassword from './components/User/ChangePassword'
 import EmployeeForm from './components/Employee/EmployeeForm'
 // import UserEditor from './components/Employee/EmployeeEditor'
 import { initializeEmployees } from './reducers/employeeReducer'
@@ -136,7 +137,7 @@ function App() {
 
 
     const departments = useSelector(state => state.departments.department)
-    console.log("Departments in App ----->", departments)
+    // console.log("Departments in App ----->", departments)
     const departmentEditorMatch = useMatch('/department/edit/:departmentId')
     const departmentToEdit = departmentEditorMatch
         ? departments.find(department => department.id === departmentEditorMatch.params.departmentId)
@@ -165,6 +166,7 @@ function App() {
                 <Route path='/card' element={<UserCard />}></Route>
                 <Route path='/department/edit/:departmentId' element={<DepartmentEdit department={departmentToEdit} />} />
                 <Route path='/department/create' element={<DepartmentForm />} />
+                <Route path='/user/:user/change-password' element={<ChangePassword />} />
             </Routes>
 
             <Footer />
