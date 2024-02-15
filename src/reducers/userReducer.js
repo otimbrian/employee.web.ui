@@ -30,6 +30,11 @@ const userSlice = createSlice({
     reducers: {
         remove(state, action) {
             state.userObject = null
+        },
+
+        update(state, action){
+            state.userObject = action.payload
+            state.state = "updated"
         }
     },
 
@@ -43,6 +48,7 @@ const userSlice = createSlice({
             .addCase(getUser.fulfilled, (state, action) => {
                 state.status = 'succeeded'
                 state.userObject = action.payload
+                state.error = null
             })
 
             .addCase(getUser.rejected, (state, action) => {
@@ -57,5 +63,11 @@ export const removeUser = () => {
         dispatch(remove())
     }
 }
-const { remove } = userSlice.actions
+
+export const updatingUser = (values) => {
+    return dispatch => {
+        dispatch(update(values))
+    }
+}
+const { remove, update } = userSlice.actions
 export default userSlice.reducer
