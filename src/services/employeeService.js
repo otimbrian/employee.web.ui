@@ -51,11 +51,19 @@ const deleteEmployeeUsingId = async (employeeId) => {
     return response.data
 }
 
+const changeUserPassword = async (passwordObject) => {
+    const data = getHeader(userToken)
+
+    const response = await axios.put(`${baseEmployeeUrl}/change-password`, passwordObject, data)
+    return response.data
+}
+
 const employeeService = {
     getAllEmployees,
     getEmployeeWithId,
     createEmployee,
     updateEmployeeUsingId,
-    deleteEmployeeUsingId
+    deleteEmployeeUsingId,
+    changeUserPassword
 }
 export default employeeService
