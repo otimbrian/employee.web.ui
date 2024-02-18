@@ -58,7 +58,7 @@ export const UserCardFullDisplay = ({ user }) => {
                 </div>
 
                 <div className='links'>
-                    <Link to={`/${user.id}`}>
+                    <Link to={`/user/${user.id}`}>
                         <FaBars /> View
                     </Link>
                     <Link to={`/${user.id}/edit`}>

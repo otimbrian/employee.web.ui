@@ -1,5 +1,7 @@
 import ButtonLink from '../ButtonLink'
-import UserDisplay from './UserDisplay'
+import NavigateBack from '../NavigateBack'
+import UserDisplay from '../User/UserDisplay'
+// import UserDisplay from './UserDisplay'
 // import { FaUser } from 'react-icons/fa6'
 // import { useNavigate } from 'react-router-dom'
 // import { useSelector, useDispatch } from 'react-redux'
@@ -19,17 +21,15 @@ const EmployeeView = ({user}) => {
     // }
     return (
         <>
-            <div className='employee-content' id='logout'>
-                {/* <button id='user-logout' onClick={logout}>
-                    <FaUser />
-                    Logout
-                </button> */}
+            <div className='employee-content'>
+                <NavigateBack />
             </div>
+            <br />
             <br />
             <div className='employee-content'>
                 <UserDisplay user={user} />
             </div>
-            <ButtonLink link={'/employee/edit'} value={'Edit User'} />
+            <ButtonLink link={`/${user.id}/edit`} value={'Edit User'} />
         </>
     )
 }
