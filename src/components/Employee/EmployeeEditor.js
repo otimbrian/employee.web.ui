@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import NavigateBack from '../NavigateBack'
 import { useNavigate } from 'react-router-dom'
-
-// import NavigateBack from "../NavigateBack";
 import { FcDeleteDatabase } from 'react-icons/fc'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateEmployee } from '../../reducers/employeeReducer'
@@ -145,14 +143,6 @@ const EmployeeEditor = ({ user }) => {
                                 </label>
                                 <br />
                                 <br />
-                                {/* {
-                                 user.id === loggedInUser.id
-                                    ?<label>
-                                    <strong>Password:</strong>
-                                    <input type="password" name="password" placeholder="Password" required="required" />
-                                </label> 
-                                : null
-        } */}
                             </fieldset>
                             {loggedInUser.isAdmin ? (
                                 <fieldset>
