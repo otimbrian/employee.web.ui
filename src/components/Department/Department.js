@@ -61,7 +61,7 @@ const SelectedDepartment = ({ department }) => {
                 <EmployeeList employees={department.employees} />
             </div>
             <div className='links'>
-                <Link to='/user'>
+                <Link to={`${department.id}`}>
                     <FaBars /> View
                 </Link>
                 <Link to={`/department/edit/${department.id}`}>

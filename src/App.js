@@ -20,6 +20,7 @@ import Employee from './components/Employee/Employee'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserToken } from './reducers/userTokenReducer'
 import Department from './components/Department/Department'
+import EmployeeView from './components/Employee/EmployeeView'
 import ChangePassword from './components/User/ChangePassword'
 import EmployeeForm from './components/Employee/EmployeeForm'
 // import UserEditor from './components/Employee/EmployeeEditor'
@@ -30,6 +31,7 @@ import DepartmentForm from './components/Department/DepartmentForm'
 import { initializeDepartment } from './reducers/departmentReducer'
 import { Route, Routes, useNavigate, useMatch } from 'react-router-dom'
 import setUserTokenString, { employeeLocalStorage } from './services/shared'
+import DepartmentView from './components/Department/DepartmentView'
 
 function App() {
     const dispatch = useDispatch()
@@ -137,10 +139,19 @@ function App() {
 
 
     const departments = useSelector(state => state.departments.department)
-    // console.log("Departments in App ----->", departments)
     const departmentEditorMatch = useMatch('/department/edit/:departmentId')
     const departmentToEdit = departmentEditorMatch
         ? departments.find(department => department.id === departmentEditorMatch.params.departmentId)
+        :undefined
+
+    const employeeToDisplayMatch = useMatch('user/:userId')
+    const employeeToDisplay = employeeToDisplayMatch
+        ? employees.find(employee => employee.id === employeeToDisplayMatch.params.userId)
+        : undefined
+
+    const departmentToDisplayMatch = useMatch('/department/:departmentId')
+    const departmentToDisplay = departmentToDisplayMatch
+        ? departments.find(department => department.id === departmentToDisplayMatch.params.departmentId)
         :undefined
 
     return (
@@ -164,6 +175,8 @@ function App() {
                 <Route path='/:employee/edit' element={<EmployeeEditor user={employee}/>} />
                 <Route path='/department' element={<Department />} />
                 <Route path='/card' element={<UserCard />}></Route>
+                <Route path='/user/:userId' element = {<EmployeeView user={employeeToDisplay} />} />
+                <Route path='/department/:departmentId' element={<DepartmentView department={departmentToDisplay}/>} />
                 <Route path='/department/edit/:departmentId' element={<DepartmentEdit department={departmentToEdit} />} />
                 <Route path='/department/create' element={<DepartmentForm />} />
                 <Route path='/user/:user/change-password' element={<ChangePassword />} />
