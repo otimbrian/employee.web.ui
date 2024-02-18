@@ -55,6 +55,18 @@ export const updateEmployee = createAsyncThunk(
         }
     }
 )
+
+export const changeEmployeePassword = createAsyncThunk(
+    'employee/changePassword',
+    async (passwordObject, { rejectWithValue }) => {
+        try {
+            const data = await employeeService.changeUserPassword(passwordObject)
+            return data
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
 const initialState = {
     employees: [],
     status: 'uninitialized',
@@ -118,6 +130,17 @@ const employeeSlice = createSlice({
                 })
             })
             .addCase(updateEmployee.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.error
+            })
+        builder
+            .addCase(changeEmployeePassword.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                state.employees = state.employees.map(employee =>
+                    employee.id !== action.payload.id ? employee : action.payload
+                )
+            })
+            .addCase(changeEmployeePassword.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error
             })
