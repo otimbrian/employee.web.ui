@@ -44,17 +44,21 @@ const updateEmployeeUsingId = async (employeeId, employeeObject) => {
 }
 
 // Delete n employee using id.
-const deleteEmployeeUsingId = async (employeeId) => {
+const deleteEmployeeUsingId = async employeeId => {
     const data = getHeader(userToken)
 
     const response = await axios.delete(`${baseEmployeeUrl}/${employeeId}`, data)
     return response.data
 }
 
-const changeUserPassword = async (passwordObject) => {
+const changeUserPassword = async passwordObject => {
     const data = getHeader(userToken)
 
-    const response = await axios.put(`${baseEmployeeUrl}/change-password`, passwordObject, data)
+    const response = await axios.put(
+        `${baseEmployeeUrl}/change`,
+        passwordObject,
+        data
+    )
     return response.data
 }
 
