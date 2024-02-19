@@ -9,6 +9,41 @@
     /* float: left; */
 }
 
+.department-view{
+    display: flex;
+    align-items: center;
+}
+
+.department-view .depart-view-container {
+    width: 300px;
+}
+
+.department-view .depart-view-container h4 {
+    font-size: 20px;
+}
+
+.department-view .depart-view-container p {
+    font-size: 20px;
+}
+.department-view .depart-view-container p strong{
+    font-size: 25px;
+}
+
+.department-view .depart-view-container ul {
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+.department-view .depart-view-container ul li {
+    list-style-type: circle;
+    margin: 0;
+    padding: 5px 0;
+}
+
+.department-view article {
+    width: 300px;
+    font-size: 100px;
+}
 .department-card:hover{
     cursor: pointer;
 }
