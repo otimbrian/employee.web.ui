@@ -36,7 +36,7 @@ const Login = () => {
         try {
             // User login with email and password.
             const result = await dispatch(userLogin({ email, password })).unwrap()
-            console.log('login result ----->', result)
+            // console.log('login result ----->', result)
 
             // Add the token to the local storage.
             employeeLocalStorage.addToLocalStorage(employeeLocalStorage.NAME, result)
@@ -102,9 +102,6 @@ const Login = () => {
                 <div>
                     <Notification />
                 </div>
-                {/* {
-                        userStatus === 'User'
-                            ? ( */}
                 <div id='login'>
                     <Link to='/recover'>Forgot your password?</Link>
                     <br />
