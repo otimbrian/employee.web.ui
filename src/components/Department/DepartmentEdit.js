@@ -4,8 +4,11 @@ import NavigateBack from '../NavigateBack'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateDepartment } from '../../reducers/departmentReducer'
-// import Notification from '../Notification'
-import { showNotification, disableNotification } from '../../reducers/notificationReducer'
+import Notification from '../Notification'
+import {
+    showNotification,
+    disableNotification
+} from '../../reducers/notificationReducer'
 
 const DepartmentEdit = ({ department }) => {
     const [name, setName] = useState(department.name)
@@ -52,7 +55,7 @@ const DepartmentEdit = ({ department }) => {
             navigate('/department')
         } catch (exception) {
             console.log('Error in updating department', exception)
-            
+            post(exception, "error")
         }
     }
 
@@ -138,7 +141,10 @@ const DepartmentEdit = ({ department }) => {
                     </div>
                 </div>
             </div>
-            
+            <div className="employee-content">
+                <Notification />
+            </div>
+
             <div className='employee-content'>
                 <input
                     type='submit'

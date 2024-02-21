@@ -90,19 +90,18 @@ function App() {
                     console.log('Departments ------>', departments)
 
                     //todo <---- add to local storage
-
-                }catch (res) {
-                        console.log('Erorr or result ----->', res)
-                        if (res.error === 'token expired') {
-                            employeeLocalStorage.removeFromLocalStorage(
-                                employeeLocalStorage.NAME
-                            )
-                            navigate('/login')
-                        }
+                } catch (res) {
+                    console.log('Erorr or result ----->', res)
+                    if (res.error === 'token expired') {
+                        employeeLocalStorage.removeFromLocalStorage(
+                            employeeLocalStorage.NAME
+                        )
+                        navigate('/login')
                     }
                 }
             }
-        
+        }
+
         callBackFunction()
     }, [dispatch, loggedInUser, navigate])
 
@@ -112,8 +111,10 @@ function App() {
         async function callBackFunction() {
             if (loggedInUser && loggedInUser.isAdmin) {
                 async function callbackFunction() {
-                    try{const employees = await dispatch(initializeEmployees()).unwrap()
-                        console.log('Employees received ----->', employees)}catch (res) {
+                    try {
+                        const employees = await dispatch(initializeEmployees()).unwrap()
+                        console.log('Employees received ----->', employees)
+                    } catch (res) {
                         console.log('Erorr or result ----->', res)
 
                         //todo <---- add to local storge
@@ -137,22 +138,29 @@ function App() {
         ? employees.find(employee => employee.id === match.params.employee)
         : undefined
 
-
     const departments = useSelector(state => state.departments.department)
     const departmentEditorMatch = useMatch('/department/edit/:departmentId')
     const departmentToEdit = departmentEditorMatch
-        ? departments.find(department => department.id === departmentEditorMatch.params.departmentId)
-        :undefined
+        ? departments.find(
+            department =>
+                department.id === departmentEditorMatch.params.departmentId
+        )
+        : undefined
 
     const employeeToDisplayMatch = useMatch('user/:userId')
     const employeeToDisplay = employeeToDisplayMatch
-        ? employees.find(employee => employee.id === employeeToDisplayMatch.params.userId)
+        ? employees.find(
+            employee => employee.id === employeeToDisplayMatch.params.userId
+        )
         : undefined
 
     const departmentToDisplayMatch = useMatch('/department/:departmentId')
     const departmentToDisplay = departmentToDisplayMatch
-        ? departments.find(department => department.id === departmentToDisplayMatch.params.departmentId)
-        :undefined
+        ? departments.find(
+            department =>
+                department.id === departmentToDisplayMatch.params.departmentId
+        )
+        : undefined
 
     return (
         <div className='App'>
@@ -171,15 +179,33 @@ function App() {
                 <Route path='/recover' element={<Recover />} />
                 <Route path='/employees' element={<Employee />} />
                 <Route path='/employees/create' element={<EmployeeForm />} />
-                <Route path='/user/edit/:user/' element={<UserEditor user={loggedInUser}/>} />
-                <Route path='/:employee/edit' element={<EmployeeEditor user={employee}/>} />
+                <Route
+                    path='/user/edit/:user/'
+                    element={<UserEditor user={loggedInUser} />}
+                />
+                <Route
+                    path='/:employee/edit'
+                    element={<EmployeeEditor user={employee} />}
+                />
                 <Route path='/department' element={<Department />} />
                 <Route path='/card' element={<UserCard />}></Route>
-                <Route path='/user/:userId' element = {<EmployeeView user={employeeToDisplay} />} />
-                <Route path='/department/:departmentId' element={<DepartmentView department={departmentToDisplay}/>} />
-                <Route path='/department/edit/:departmentId' element={<DepartmentEdit department={departmentToEdit} />} />
+                <Route
+                    path='/user/:userId'
+                    element={<EmployeeView user={employeeToDisplay} />}
+                />
+                <Route
+                    path='/department/:departmentId'
+                    element={<DepartmentView department={departmentToDisplay} />}
+                />
+                <Route
+                    path='/department/edit/:departmentId'
+                    element={<DepartmentEdit department={departmentToEdit} />}
+                />
                 <Route path='/department/create' element={<DepartmentForm />} />
-                <Route path='/user/:user/change-password' element={<ChangePassword />} />
+                <Route
+                    path='/user/:user/change-password'
+                    element={<ChangePassword />}
+                />
             </Routes>
 
             <Footer />

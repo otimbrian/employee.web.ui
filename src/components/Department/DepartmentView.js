@@ -1,15 +1,10 @@
-import {
-    FaBuildingColumns,
-    FaUserGroup,
-} from 'react-icons/fa6'
+import { FaBuildingColumns, FaUserGroup } from 'react-icons/fa6'
 import ButtonLink from '../ButtonLink'
 import NavigateBack from '../NavigateBack'
 
-
-
 const EmployeeList = ({ employees }) => {
     return (
-        <ul >
+        <ul>
             {employees.map(employee => (
                 <li key={employee.id}>{employee.name}</li>
             ))}
@@ -17,39 +12,42 @@ const EmployeeList = ({ employees }) => {
     )
 }
 
-const DepartmentView = ({department}) => {
+const DepartmentView = ({ department }) => {
     return (
         <>
-        <div className = "employee-content">
-        <NavigateBack />
-        </div>
-        <br />
-        <br />
-            <div className="employee-content">
-               
-            <div className='department-view'>
-            <article>
-                <FaBuildingColumns />
-            </article>
-            <div className='depart-view-container'>
-                <h4>
-                    <i>{department.name}</i>
-                </h4>
-                <p>
-                    <FaUserGroup /> <strong>{department.employees.length}</strong> <br />
-                    Employees
-                </p>
+            <div className='employee-content'>
+                <NavigateBack />
+            </div>
+            <br />
+            <br />
+            <div className='employee-content'>
+                <div className='department-view'>
+                    <article>
+                        <FaBuildingColumns />
+                    </article>
+                    <div className='depart-view-container'>
+                        <h4>
+                            <i>{department.name}</i>
+                        </h4>
+                        <p>
+                            <FaUserGroup /> <strong>{department.employees.length}</strong>{' '}
+                            <br />
+                            Employees
+                        </p>
 
-                <div>
-                <p>
-                    <strong>EMPLOYEES</strong>
-                </p>
-                <EmployeeList employees={department.employees} />
+                        <div>
+                            <p>
+                                <strong>EMPLOYEES</strong>
+                            </p>
+                            <EmployeeList employees={department.employees} />
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-            </div>
-            <ButtonLink link={`/department/edit/${department.id}`} value={'Edit department'} />
+            <ButtonLink
+                link={`/department/edit/${department.id}`}
+                value={'Edit department'}
+            />
         </>
     )
 }

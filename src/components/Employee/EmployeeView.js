@@ -8,7 +8,7 @@ import UserDisplay from '../User/UserDisplay'
 // import { employeeLocalStorage } from '../../services/shared'
 // import { removeUser } from '../../reducers/userReducer'
 
-const EmployeeView = ({user}) => {
+const EmployeeView = ({ user }) => {
     // const navigate = useNavigate()
     // const dispatch = useDispatch()
     // const user = useSelector(state => state.user.userObject)
