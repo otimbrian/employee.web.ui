@@ -14,7 +14,7 @@ import Footer from './components/Footer'
 import User from './components/User/User'
 import UserCard from './components/User/Card'
 import Recover from './components/User/Recover'
-import { getUser } from './reducers/userReducer'
+import { getUser, removeUser } from './reducers/userReducer'
 import UserEditor from './components/User/UserEditor'
 import Employee from './components/Employee/Employee'
 import { useDispatch, useSelector } from 'react-redux'
@@ -62,6 +62,7 @@ function App() {
                 } catch (res) {
                     console.log('Erorr or result ----->', res)
                     if (res.error === 'token expired') {
+                        dispatch(removeUser())
                         employeeLocalStorage.removeFromLocalStorage(
                             employeeLocalStorage.NAME
                         )
@@ -93,6 +94,7 @@ function App() {
                 } catch (res) {
                     console.log('Erorr or result ----->', res)
                     if (res.error === 'token expired') {
+                        dispatch(removeUser())
                         employeeLocalStorage.removeFromLocalStorage(
                             employeeLocalStorage.NAME
                         )
@@ -119,6 +121,7 @@ function App() {
 
                         //todo <---- add to local storge
                         if (res.error === 'token expired') {
+                            dispatch(removeUser())
                             employeeLocalStorage.removeFromLocalStorage(
                                 employeeLocalStorage.NAME
                             )

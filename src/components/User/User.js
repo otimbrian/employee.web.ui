@@ -10,6 +10,7 @@ const User = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.userObject)
+    console.log("User Stte --->", user)
 
     const logout = () => {
         // console.log('loggin out.')

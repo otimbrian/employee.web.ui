@@ -7,6 +7,7 @@ import {
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { DisplayNumber } from './DisplayNumber'
 
 const DepartmentCard = ({ department, selected }) => {
     return (
@@ -22,7 +23,7 @@ const DepartmentCard = ({ department, selected }) => {
                     <p>
                         <FaUserGroup /> <strong>{department.employees.length}</strong>{' '}
                         <br />
-                        Employees
+                       <DisplayNumber department={department}/>
                     </p>
                 </div>
             </div>
@@ -52,7 +53,7 @@ const SelectedDepartment = ({ department }) => {
                 </h4>
                 <p>
                     <FaUserGroup /> <strong>{department.employees.length}</strong> <br />
-                    Employees
+                    <DisplayNumber  department={department}/>
                 </p>
 
                 <p>

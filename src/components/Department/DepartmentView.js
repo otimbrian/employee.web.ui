@@ -1,6 +1,7 @@
 import { FaBuildingColumns, FaUserGroup } from 'react-icons/fa6'
 import ButtonLink from '../ButtonLink'
 import NavigateBack from '../NavigateBack'
+import { DisplayNumber } from './DisplayNumber'
 
 const EmployeeList = ({ employees }) => {
     return (
@@ -32,7 +33,7 @@ const DepartmentView = ({ department }) => {
                         <p>
                             <FaUserGroup /> <strong>{department.employees.length}</strong>{' '}
                             <br />
-                            Employees
+                            <DisplayNumber department={department}/>
                         </p>
 
                         <div>
