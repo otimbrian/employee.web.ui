@@ -3,8 +3,6 @@ import {
     FaUser,
     FaHouse,
     FaUserGroup,
-    FaRegCircleUp,
-    FaRegCircleDown,
     FaEnvelope
 } from 'react-icons/fa6'
 
@@ -82,12 +80,7 @@ const Menu = ({ user }) => {
                                     {user.surname}
                                 </Link>
                             </li>
-                            {/* <li aria-current={window.location.pathname === '/department' ? 'page' : undefined}>
-                                <Link to='/login'>
-                                    <FaRegCircleUp />
-                                    Login
-                                </Link>
-                            </li> */}
+                            
                         </>
                     )}
                 </>
