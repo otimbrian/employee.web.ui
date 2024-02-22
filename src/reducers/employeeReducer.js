@@ -32,8 +32,8 @@ export const deleteEmployee = createAsyncThunk(
     'employee/delete',
     async (employeeId, { rejectWithValue }) => {
         try {
-            const data = await employeeService.deleteEmployeeUsingId(employeeId)
-            return data
+            await employeeService.deleteEmployeeUsingId(employeeId)
+            return {id: employeeId}
         } catch (exception) {
             return rejectWithValue(exception.response.data)
         }

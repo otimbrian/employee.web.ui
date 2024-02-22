@@ -1,18 +1,45 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import SelectForm from './SelectForm.js'
 import EmployeeList from './EmployeeList.js'
-import { useSelector } from 'react-redux'
-import { UserCardFullDisplay } from '../User/Card.js'
 import { FaUserPlus } from 'react-icons/fa6'
-// import { initializeEmployees } from '../../reducers/employeeReducer.js'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserCardFullDisplay } from '../User/Card.js'
+import { useSelector, useDispatch } from 'react-redux'
+import { removeUser } from '../../reducers/userReducer.js'
+import { employeeLocalStorage } from '../../services/shared.js'
+import { deleteEmployee } from '../../reducers/employeeReducer.js'
 
 const Employee = () => {
     const [selectedUser, setSelectedUser] = useState(null)
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleUserSelection = employee => {
         setSelectedUser(employee)
+    }
+
+    // Delete Employee handler
+    const handleDeleteEmployee = async employeeId => {
+        console.log('Deleting an employee. ---->', employeeId)
+
+        try {
+            // Dispatch a delete request.
+            await dispatch(deleteEmployee(employeeId)).unwrap()
+
+            // If successful, remove the employee
+            // From the selected employee
+            setSelectedUser(null)
+        } catch (exception) {
+            if (exception.error === 'token expired') {
+                // If the token is expired.
+                // Remove the user from the reducer
+                dispatch(removeUser())
+
+                // Remove token from local storage.
+                employeeLocalStorage.removeFromLocalStorage(employeeLocalStorage.NAME)
+                navigate('/login')
+            }
+        }
     }
 
     const employees = useSelector(state => state.employees.employees)
@@ -23,42 +50,22 @@ const Employee = () => {
                 <SelectForm />
             </div>
             <div className='employee-content'>
-            <Link to='create'>
-                                    <span>
-                                        <FaUserPlus />
-                                        <br />
-                                        Create Employee
-                                    </span>
-                                </Link>
+                <Link to='create'>
+                    <span>
+                        <FaUserPlus />
+                        <br />
+                        Create Employee
+                    </span>
+                </Link>
             </div>
             <div className='content'>
                 <div className='employee-content'>
-                    {/* <div className='column1'> */}
-                        {/* <ul className='nav'> */}
-                            {/* <li>
-                                <Link to='show'>
-                                    <span>
-                                        <FaListUl />
-                                        <br />
-                                        Show
-                                    </span>
-                                </Link>
-                            </li> */}
-                            {/* <li> */}
-                                {/* <Link to='create'>
-                                    <span>
-                                        <FaUserPlus />
-                                        <br />
-                                        Create
-                                    </span>
-                                </Link> */}
-                            {/* </li> */}
-                        {/* </ul> */}
-                    {/* </div> */}
                     <EmployeeList employees={employees} selected={handleUserSelection} />
                     <div className='column2'>
-                        {/* <h4>Selected</h4> */}
-                        <UserCardFullDisplay user={selectedUser} />
+                        <UserCardFullDisplay
+                            user={selectedUser}
+                            handleDeleteEmployee={handleDeleteEmployee}
+                        />
                     </div>
                 </div>
             </div>
