@@ -33,7 +33,7 @@ const DepartmentList = ({ department }) => {
 
 // When selected.
 // Disply almost all user details
-export const UserCardFullDisplay = ({ user, deleteEmployee }) => {
+export const UserCardFullDisplay = ({ user, handleDeleteEmployee }) => {
     return user ? (
         <>
             <div className='user-card'>
@@ -65,7 +65,7 @@ export const UserCardFullDisplay = ({ user, deleteEmployee }) => {
                     <Link to={`/${user.id}/edit`}>
                         <FaFeatherPointed /><br /> Edit
                     </Link>
-                    <Link onClick={deleteEmployee}><AiFillDelete /><br />Delete</Link>
+                    <Link onClick={() => handleDeleteEmployee(user.id)}><AiFillDelete /><br />Delete</Link>
                 </div>
             </div>
         </>

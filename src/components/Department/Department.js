@@ -5,10 +5,12 @@ import {
     FaBars
 } from 'react-icons/fa6'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { AiFillDelete } from 'react-icons/ai'
 import { DisplayNumber } from './DisplayNumber'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { removeUser } from '../../reducers/userReducer'
+import { employeeLocalStorage } from '../../services/shared'
 import { deleteDepartment } from '../../reducers/departmentReducer'
 
 const DepartmentCard = ({ department, selected }) => {
@@ -86,7 +88,7 @@ const Department = () => {
     const departments = useSelector(state => state.departments.department)
 
     const dispatch = useDispatch()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const selectHandler = department => {
         setSelectedDepartment(department)
@@ -95,12 +97,20 @@ const Department = () => {
     const HandleDeleteDepartment = async id => {
         console.log('Deleting department with id ------>', id)
 
-        // Dispatch to delete
-       await dispatch(deleteDepartment(id)).unwrap()
+        try {
+            // Dispatch to delete
+            await dispatch(deleteDepartment(id)).unwrap()
 
-        // Navigate to the department page.
-        // navigate("/departments")
-        setSelectedDepartment(null)
+            // Navigate to the department page.
+            // navigate("/departments")
+            setSelectedDepartment(null)
+        } catch (exception) {
+            if (exception.error === 'token expired') {
+                dispatch(removeUser())
+                employeeLocalStorage.removeFromLocalStorage(employeeLocalStorage.NAME)
+                navigate('/login')
+            }
+        }
     }
 
     console.log('Departments --->', departments)
