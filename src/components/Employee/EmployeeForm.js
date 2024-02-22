@@ -10,6 +10,9 @@ import {
     showNotification,
     disableNotification
 } from '../../reducers/notificationReducer'
+import  { employeeLocalStorage } from '../../services/shared'
+import { removeUser } from '../../reducers/userReducer'
+
 
 const EmployeeForm = () => {
     const [name, setName] = useState('')
@@ -68,6 +71,15 @@ const EmployeeForm = () => {
                 exception.error.startsWith('Employee validation failed:')
             ) {
                 post('Duplicate Already Exists', 'error')
+            }else if (exception.error === 'token expired') {
+                dispatch(removeUser())
+                employeeLocalStorage.removeFromLocalStorage(
+                    employeeLocalStorage.NAME
+                )
+                navigate('/login')
+            }else{
+                post("Error in Creation", "error")
+
             }
         }
     }
@@ -81,6 +93,8 @@ const EmployeeForm = () => {
         if (!found) {
             setDepartment([...department, selected])
         }
+
+        console.log("Departments to be created ----->", department)
     }
 
     return (

@@ -10,7 +10,7 @@
 
 .column {
     background-color: #efefef;
-    width: 325px;
+    width: 360px;
     float: left;
     margin: 10px;
     max-height: 300px;
@@ -40,14 +40,14 @@ form#editor-form {
 }
 .column1 {
     background-color: #efefef;
-    width: 95px;
+    width: 80px;
     float: left;
     margin: 10px;
 }
 
 .column2 {
     background-color: #efefef;
-    width: 240px;
+    width: 320px;
     float: left;
     margin: 10px;
     max-height: 300px;

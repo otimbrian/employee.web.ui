@@ -6,8 +6,10 @@ import {
 } from 'react-icons/fa6'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { AiFillDelete } from 'react-icons/ai'
 import { DisplayNumber } from './DisplayNumber'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteDepartment } from '../../reducers/departmentReducer'
 
 const DepartmentCard = ({ department, selected }) => {
     return (
@@ -23,7 +25,7 @@ const DepartmentCard = ({ department, selected }) => {
                     <p>
                         <FaUserGroup /> <strong>{department.employees.length}</strong>{' '}
                         <br />
-                       <DisplayNumber department={department}/>
+                        <DisplayNumber department={department} />
                     </p>
                 </div>
             </div>
@@ -41,7 +43,7 @@ const EmployeeList = ({ employees }) => {
     )
 }
 
-const SelectedDepartment = ({ department }) => {
+const SelectedDepartment = ({ department, deleteDepartment }) => {
     return (
         <div className='selected-department'>
             <article>
@@ -53,7 +55,7 @@ const SelectedDepartment = ({ department }) => {
                 </h4>
                 <p>
                     <FaUserGroup /> <strong>{department.employees.length}</strong> <br />
-                    <DisplayNumber  department={department}/>
+                    <DisplayNumber department={department} />
                 </p>
 
                 <p>
@@ -63,10 +65,17 @@ const SelectedDepartment = ({ department }) => {
             </div>
             <div className='links'>
                 <Link to={`${department.id}`}>
-                    <FaBars /> View
+                    <FaBars /> <br />
+                    View
                 </Link>
                 <Link to={`/department/edit/${department.id}`}>
-                    <FaFeatherPointed /> Edit
+                    <FaFeatherPointed />
+                    <br /> Edit
+                </Link>
+                <Link onClick={() => deleteDepartment(department.id)}>
+                    <AiFillDelete />
+                    <br />
+                    Delete
                 </Link>
             </div>
         </div>
@@ -74,13 +83,27 @@ const SelectedDepartment = ({ department }) => {
 }
 const Department = () => {
     const [selectedDepartment, setSelectedDepartment] = useState(null)
+    const departments = useSelector(state => state.departments.department)
+
+    const dispatch = useDispatch()
+    // const navigate = useNavigate()
 
     const selectHandler = department => {
         setSelectedDepartment(department)
     }
 
-    const departments = useSelector(state => state.departments.department)
-    console.log("Departments --->",departments)
+    const HandleDeleteDepartment = async id => {
+        console.log('Deleting department with id ------>', id)
+
+        // Dispatch to delete
+       await dispatch(deleteDepartment(id)).unwrap()
+
+        // Navigate to the department page.
+        // navigate("/departments")
+        setSelectedDepartment(null)
+    }
+
+    console.log('Departments --->', departments)
 
     return (
         <>
@@ -91,21 +114,24 @@ const Department = () => {
                 <h4 id='depart-head'>Department</h4>
                 <div className='depart'>
                     {/* {departments ? ( */}
-                        <div className='department-list'>
-                            <ul id='department-card-list'>
-                                {departments.map(depart => (
-                                    <DepartmentCard
-                                        department={depart}
-                                        key={depart.id}
-                                        selected={selectHandler}
-                                    />
-                                ))}
-                            </ul>
-                        </div>
+                    <div className='department-list'>
+                        <ul id='department-card-list'>
+                            {departments.map(depart => (
+                                <DepartmentCard
+                                    department={depart}
+                                    key={depart.id}
+                                    selected={selectHandler}
+                                />
+                            ))}
+                        </ul>
+                    </div>
                     {/* ) : null} */}
                     {selectedDepartment ? (
                         <div className='second-column'>
-                            <SelectedDepartment department={selectedDepartment} />
+                            <SelectedDepartment
+                                department={selectedDepartment}
+                                deleteDepartment={HandleDeleteDepartment}
+                            />
                         </div>
                     ) : null}
                 </div>

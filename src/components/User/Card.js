@@ -6,6 +6,7 @@ import {
     FaFeatherPointed
 } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
+import { AiFillDelete } from 'react-icons/ai'
 
 // User card.
 const UserCard = ({ user }) => {
@@ -32,7 +33,7 @@ const DepartmentList = ({ department }) => {
 
 // When selected.
 // Disply almost all user details
-export const UserCardFullDisplay = ({ user }) => {
+export const UserCardFullDisplay = ({ user, deleteEmployee }) => {
     return user ? (
         <>
             <div className='user-card'>
@@ -59,11 +60,12 @@ export const UserCardFullDisplay = ({ user }) => {
 
                 <div className='links'>
                     <Link to={`/user/${user.id}`}>
-                        <FaBars /> View
+                        <FaBars /> <br/>View
                     </Link>
                     <Link to={`/${user.id}/edit`}>
-                        <FaFeatherPointed /> Edit
+                        <FaFeatherPointed /><br /> Edit
                     </Link>
+                    <Link onClick={deleteEmployee}><AiFillDelete /><br />Delete</Link>
                 </div>
             </div>
         </>

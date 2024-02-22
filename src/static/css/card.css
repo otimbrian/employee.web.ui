@@ -19,7 +19,7 @@
 }
 
 .user-card {
-    width: 230px;
+    width: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     padding-left: 5px;
@@ -44,6 +44,8 @@
     padding: 5px 0;
   }
 
-  .container .links {
-    padding-bottom: 20px;
+  .user-card .links {
+    /* padding: 2px; */
+    display: flex;
+    padding-left: 35px;
   }

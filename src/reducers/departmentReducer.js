@@ -32,8 +32,8 @@ export const deleteDepartment = createAsyncThunk(
     'department/delete',
     async (departmentId, { rejectWithValue }) => {
         try {
-            const data = await departmentService.deleteDepartmentUsingId(departmentId)
-            return data
+            await departmentService.deleteDepartmentUsingId(departmentId)
+            return {id: departmentId}
         } catch (exception) {
             return rejectWithValue(exception.response.data)
         }
@@ -103,6 +103,7 @@ const departmentSlice = createSlice({
         builder
 
             .addCase(deleteDepartment.fulfilled, (state, action) => {
+                console.log("Action Payload ------>",JSON.stringify(action.payload))
                 state.status = 'succeeded'
                 state.department = state.department.filter(
                     d => d.id !== action.payload.id
