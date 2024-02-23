@@ -51,8 +51,8 @@ const EmployeeForm = () => {
             isAdmin: isAdmin
         }
 
-        console.log('=====Trying to create Employee ======')
-        console.log('New employee ------>', newEmployee)
+        // console.log('=====Trying to create Employee ======')
+        // console.log('New employee ------>', newEmployee)
 
         try {
             const createdEmployee = await dispatch(
@@ -183,8 +183,8 @@ const EmployeeForm = () => {
                                 required='required'
                                 onChange={e => setIsAdmin(e.target.value === 'true')}
                             >
-                                <option value='true'>Admin</option>
-                                <option value='false'>Not Admin</option>
+                                <option value='true' key="Admin">Admin</option>
+                                <option value='false' key="Not Admin">Not Admin</option>
                             </select>
                         </label>
                         <br />

@@ -99,7 +99,7 @@ const Department = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    
+
     const handleFilterDepartment = e => {
         e.preventDefault()
 
@@ -139,11 +139,11 @@ const Department = () => {
         <>
             <div className='employee-content'>
                 <form>
-                    Filter Department By Name:
+                    Filter By Name:
                     <input
                         type='text'
                         name='search'
-                        placeholder='Employee Name'
+                        placeholder='Department Name'
                         onChange={e => handleFilterDepartment(e)}
                     />
                 </form>
@@ -165,7 +165,7 @@ const Department = () => {
                             ))}
                         </ul>
                     </div>
-                    {/* ) : null} */}
+                    
                     {selectedDepartment ? (
                         <div className='second-column'>
                             <SelectedDepartment
