@@ -85,17 +85,38 @@ const SelectedDepartment = ({ department, deleteDepartment }) => {
 }
 const Department = () => {
     const [selectedDepartment, setSelectedDepartment] = useState(null)
+    const [filterDepartmentByName, setfilterDepartment] = useState('')
+
     const departments = useSelector(state => state.departments.department)
+    const departmentToDisplay =
+        filterDepartmentByName === ''
+            ? departments
+            : departments.filter(department =>
+                department.name
+                    .toLowerCase()
+                    .includes(filterDepartmentByName.toLowerCase())
+            )
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    
+    const handleFilterDepartment = e => {
+        e.preventDefault()
+
+        // set the serch param for the department name
+        setfilterDepartment(e.target.value)
+
+        // Remove  selected department
+        // If it exist
+        setSelectedDepartment(null)
+    }
 
     const selectHandler = department => {
         setSelectedDepartment(department)
     }
 
-    const HandleDeleteDepartment = async id => {
-        console.log('Deleting department with id ------>', id)
+    const handleDeleteDepartment = async id => {
+        // console.log('Deleting department with id ------>', id)
 
         try {
             // Dispatch to delete
@@ -113,20 +134,29 @@ const Department = () => {
         }
     }
 
-    console.log('Departments --->', departments)
-
+    // console.log('Departments --->', departments)
     return (
         <>
+            <div className='employee-content'>
+                <form>
+                    Filter Department By Name:
+                    <input
+                        type='text'
+                        name='search'
+                        placeholder='Employee Name'
+                        onChange={e => handleFilterDepartment(e)}
+                    />
+                </form>
+            </div>
             <div className='employee-content'>
                 <Link to='/department/create'>Create New Department</Link>
             </div>
             <div className='employee-content'>
                 <h4 id='depart-head'>Department</h4>
                 <div className='depart'>
-                    {/* {departments ? ( */}
                     <div className='department-list'>
                         <ul id='department-card-list'>
-                            {departments.map(depart => (
+                            {departmentToDisplay.map(depart => (
                                 <DepartmentCard
                                     department={depart}
                                     key={depart.id}
@@ -140,7 +170,7 @@ const Department = () => {
                         <div className='second-column'>
                             <SelectedDepartment
                                 department={selectedDepartment}
-                                deleteDepartment={HandleDeleteDepartment}
+                                deleteDepartment={handleDeleteDepartment}
                             />
                         </div>
                     ) : null}
