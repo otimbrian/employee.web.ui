@@ -10,7 +10,7 @@
 
 .column {
     background-color: #efefef;
-    width: 320px;
+    width: 360px;
     float: left;
     margin: 10px;
     max-height: 300px;
@@ -24,6 +24,13 @@
     display: flex;
 }
 
+form#editor-form {
+    height: 450px;
+    width: 720px;
+    padding-left: 100px;
+    align-self: center;
+}
+
 .form-content{
     display: flex;
 }
@@ -33,24 +40,39 @@
 }
 .column1 {
     background-color: #efefef;
-    width: 100px;
+    width: 80px;
     float: left;
     margin: 10px;
 }
 
 .column2 {
     background-color: #efefef;
-    width: 240px;
+    width: 320px;
     float: left;
     margin: 10px;
     max-height: 300px;
     overflow: scroll;
 }
 
+
 .employee-content ul li {
     list-style-type: none;
     padding-top: 50px;
     /* display: inline; */
+}
+.employee-content ul#user-list-li {
+    padding-left: 0px;
+}
+.employee-content ul#user-list-li li {
+    padding-top: 10px;
+}
+
+.card .container p#email {
+    text-transform: lowercase;
+}
+
+.card .container h4#cap {
+    text-transform: uppercase;
 }
 
 #login a {

@@ -1,23 +1,35 @@
+import { useSelector } from 'react-redux'
 
-const SelectForm = () => {
-    return (
-        <div className="form-content">
-            <form action="http://www.example.com/profile.php">
-                By Departmet:
-                <select name="devices">
-                    <option value="ipod">iPod</option>
-                    <option value="radio">Radio</option>
-                    <option value="computer">Computer</option>
-                </select>
-            </form>
-            <form action="http://www.example.org/search.php">
-                By Name:
-                <input type="text" name="search"
-                    placeholder="Employee Name" />
-                {/* <input type="submit" value="Search" /> */}
-            </form>
-        </div>
-    )
+const SelectForm = ({ setFilterByDepartment, setFilterByName }) => {
+  const departments = useSelector(state => state.departments.department)
+  return (
+    <div className='form-content'>
+      <form>
+        By Departmet:
+        <select
+          name='department'
+          onChange={e => setFilterByDepartment(e)}
+          defaultValue='All Departments'
+        >
+          <option value='All Departments'>All Departments</option>
+          {departments.map(department => (
+            <option value={department.id} key={department.id}>
+              {department.name}
+            </option>
+          ))}
+        </select>
+      </form>
+      <form>
+        By Name:
+        <input
+          type='text'
+          name='search'
+          placeholder='Employee Name'
+          onChange={e => setFilterByName(e)}
+        />
+      </form>
+    </div>
+  )
 }
 
 export default SelectForm

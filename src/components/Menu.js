@@ -1,48 +1,90 @@
-import { Link } from "react-router-dom"
-import { FaUser, FaHouse, FaUserGroup, FaRegCircleUp, FaRegCircleDown, FaEnvelope } from "react-icons/fa6";
+import { Link } from 'react-router-dom'
+import {
+    FaUser,
+    FaHouse,
+    FaUserGroup,
+    FaEnvelope
+} from 'react-icons/fa6'
 
 // , FaBars, FaRegUser
 
-const Menu = () => {
+const Menu = ({ user }) => {
     return (
-   
-        <ul id="navigation" >
-            <li>
-                <Link to='/'>
-                    <FaHouse />
-                    Home
-                </Link>
-            </li>
-            <li>
-                <Link to='/employees'>
-                    <FaUserGroup />
-                    Employee
-                </Link>
-            </li>
-            <li>
-                <Link to='/department'>
-                <FaEnvelope />
-                    Department
-                </Link>
-            </li>
-            <li>
-                <Link to='/login'>
-                    <FaRegCircleUp />
-                    Login
-                </Link>
-            </li>
-            <li>
-                <Link to='/logout'>
-                    <FaRegCircleDown />
-                    Logout
-                </Link>
-            </li>
-            <li>
-                <Link to='/user'>
-                    <FaUser />
-                    User
-                </Link>
-            </li>
+        <ul id='navigation'>
+            {user ? (
+                <>
+                    {!user.isAdmin ? (
+                        <>
+                            <li
+                                aria-current={
+                                    window.location.pathname === '/' ? 'page' : undefined
+                                }
+                            >
+                                <Link to='/'>
+                                    <FaHouse />
+                                    Home
+                                </Link>
+                            </li>
+                            <li
+                                aria-current={
+                                    window.location.pathname === '/user' ? 'page' : undefined
+                                }
+                            >
+                                <Link to='/user'>
+                                    <FaUser />
+                                    {user.surname}
+                                </Link>
+                            </li>
+                        </>
+                    ) : (
+                        <>
+                            <li
+                                aria-current={
+                                    window.location.pathname === '/' ? 'page' : undefined
+                                }
+                            >
+                                <Link to='/'>
+                                    <FaHouse />
+                                    Home
+                                </Link>
+                            </li>
+                            <li
+                                aria-current={
+                                    window.location.pathname === '/employees' ? 'page' : undefined
+                                }
+                            >
+                                <Link to='/employees'>
+                                    <FaUserGroup />
+                                    Employee
+                                </Link>
+                            </li>
+                            <li
+                                aria-current={
+                                    window.location.pathname === '/department'
+                                        ? 'page'
+                                        : undefined
+                                }
+                            >
+                                <Link to='/department'>
+                                    <FaEnvelope />
+                                    Department
+                                </Link>
+                            </li>
+                            <li
+                                aria-current={
+                                    window.location.pathname === '/user' ? 'page' : undefined
+                                }
+                            >
+                                <Link to='/user'>
+                                    <FaUser />
+                                    {user.surname}
+                                </Link>
+                            </li>
+                            
+                        </>
+                    )}
+                </>
+            ) : null}
         </ul>
     )
 }

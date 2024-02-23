@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 
-const ButtonLink = () => {
+const ButtonLink = ({value, link}) => {
     return(
         <div className="employee-content">
             {/* <input type="button" value="Edit User" /> */}
-            <Link to="/employee/edit" id="submit">Edit User</Link>
+            <Link to={link} id="submit">{value}</Link>
         </div>
     )
 }

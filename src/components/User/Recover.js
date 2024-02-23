@@ -13,6 +13,7 @@ const Recover = () => {
                 <h4>Email</h4>
                 <input type="email" placeholder="Enter email" required name="email" />
                 <br />
+                <br />
                 <input type="submit" value="Enter" />
             </form>
         </div>

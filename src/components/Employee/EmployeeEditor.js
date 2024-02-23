@@ -1,82 +1,85 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import NavigateBack from '../NavigateBack'
-import Notification from '../Notification'
 import { useNavigate } from 'react-router-dom'
-import { updatingUser } from '../../reducers/userReducer'
+import { FcDeleteDatabase } from 'react-icons/fc'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateEmployee } from '../../reducers/employeeReducer'
-import {
-    showNotification,
-    disableNotification
-} from '../../reducers/notificationReducer'
 
-const DepartmentList = ({ department }) => {
-    return <li>{department.name}</li>
+const DepartmentList = ({ department, handleDelete }) => {
+    return (
+        <li>
+            {department.name}{' '}
+            <button onClick={handleDelete}>
+                <FcDeleteDatabase />
+            </button>
+        </li>
+    )
 }
 
-const UserEditor = ({ user }) => {
+const EmployeeEditor = ({ user }) => {
     const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
+    // const [password, setPassword] = useState('')
     const [username, setUserName] = useState(user.surname)
+    // const [isAdmin, setIsAdmin] = useState(false)
+    const [department, setDepartment] = useState(user.department)
 
-    const navigate = useNavigate()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const post = (message, status) => {
-        dispatch(
-            showNotification({
-                message: message,
-                status: 'error'
-            })
-        )
-        setTimeout(() => {
-            dispatch(disableNotification())
-        }, 5000)
+    // Handle department deletion.
+    // From the list of departments to which a user belongs.
+    const handleDelete = id => {
+        setDepartment(department.filter(depart => depart.id !== id))
     }
 
+    const handleDepartment = e => {
+        e.preventDefault()
+        // console.log("Department value ---> ", e.target.value)
+        const selected = JSON.parse(e.target.value)
+        const found = department.find(dep => dep.id === selected.id)
+
+        if (!found) {
+            setDepartment([...department, selected])
+        }
+    }
+
+    // Handler for updating the employee.
     const handleUpdate = async e => {
         e.preventDefault()
 
-        const newUpdatedFields = {
+        const newUser = {
             ...user,
             name: name,
-            email: email,
-            surname: username
+            surname: username,
+            department: department,
+            email: email
         }
 
+        console.log('User to be created ----->', newUser)
         try {
-            // Send updates to the database.
-            console.log('New Values ------>', newUpdatedFields)
-            const updatedUser = await dispatch(
-                updateEmployee({
-                    employeeId: user.id,
-                    employeeObject: newUpdatedFields
-                })
+            const updatedEmployee = await dispatch(
+                updateEmployee({ employeeId: user.id, employeeObject: newUser })
             ).unwrap()
+            console.log('Updated user ---->', updatedEmployee)
+            //todo <----- Add to local storage.
 
-            // Update the user reducer for the logged in user.
-            dispatch(updatingUser(updatedUser))
-
-            // Navigate to the previous tab.
-            navigate(-1)
+            navigate('/employees')
         } catch (exception) {
-            // console.log(exception)
-            post(`Failed to Update ${exception}`, 'error')
+            console.log('Exception ocurred ----->', exception)
         }
     }
 
-    // const loggedInUser = useSelector(state => state.user.userObject)
+    const departments = useSelector(state => state.departments.department)
+    const loggedInUser = useSelector(state => state.user.userObject)
+    console.log('Logged in user ---->', loggedInUser)
     return (
         <>
             <div className='employee-content'>
                 <NavigateBack />
-                <div>
-                    <input
-                        type='button'
-                        value='Change Password'
-                        onClick={() => navigate(`/user/${user.id}/change-password`)}
-                    />
-                </div>
+                {/* <Link to="/user">
+                    <FaArrowLeft />Back
+                </Link> */}
             </div>
             <br />
             <form id='editor-form'>
@@ -141,29 +144,51 @@ const UserEditor = ({ user }) => {
                                 <br />
                                 <br />
                             </fieldset>
+                            {loggedInUser.isAdmin ? (
+                                <fieldset>
+                                    <legend>Technical:</legend>
+                                    <label>
+                                        <strong>Department:</strong>
+                                        <select
+                                            name='department'
+                                            onChange={handleDepartment}
+                                            multiple='multiple'
+                                        >
+                                            {departments.map(department => (
+                                                <option
+                                                    key={department.id}
+                                                    value={JSON.stringify(department)}
+                                                >
+                                                    {department.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </label>
+                                </fieldset>
+                            ) : null}
                         </div>
                         <div className='column-two'>
                             <h4>Departments</h4>
                             <div>
-                                <ul id='a'>
-                                    {user.department.map(depart => (
-                                        <DepartmentList department={depart} key={depart.id} />
+                                <ul id='department-list'>
+                                    {department.map(depart => (
+                                        <DepartmentList
+                                            department={depart}
+                                            key={depart.id}
+                                            handleDelete={() => handleDelete(depart.id)}
+                                        />
                                     ))}
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div className='employee-content'>
                     <input type='submit' value='Update User' onClick={handleUpdate} />
                 </div>
             </form>
-            <div className='employee-content'>
-                <Notification />
-            </div>
         </>
     )
 }
 
-export default UserEditor
+export default EmployeeEditor
